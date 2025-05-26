@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Design Patterns",
+    "pages": 199,
+    "price": 2000,
+    "author": {
+      "firstName": "Lerdorf",
+      "lastName": "Rasmus"
+    },
+    "available": true
+  },
+  {
+    "title": "30 days to better english",
+    "pages": 145,
+    "price": 99,
+    "author": {
+      "firstName": "Stephen",
+      "lastName": "Hawkins"
+    },
+    "available": true
+  }
+]
