@@ -5,6 +5,7 @@ $accounts = array(
     "cromwell@gmail.com" => "123",
     "lucianocromwell@gmail.com" => "456",
     "sachiblack@gmail.com" => "blackcatto",
+    "jay@gmail.com" => "password123",
 );
 
 
