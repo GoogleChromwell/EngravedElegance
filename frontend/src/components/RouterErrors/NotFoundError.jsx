@@ -1,5 +1,4 @@
 import React from 'react'
-import { href } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 export default function NotFoundError() {
