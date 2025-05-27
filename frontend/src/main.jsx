@@ -8,6 +8,10 @@ import Dashboard from './pages/Dashboard.jsx'
 import NotFoundError from './components/RouterErrors/NotFoundError.jsx'
 import Register from './components/Authentication/Register.jsx'
 import CustomerTable from './components/Tables/CustomerTable.jsx'
+import Cart from './pages/Cart.jsx'
+import Orders from './pages/Orders.jsx'
+import Customer from './pages/Customer.jsx'
+import Staff from './pages/Staff.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,8 +28,20 @@ const router = createBrowserRouter([
     element: <Register/>,
   },
   {
-    path: '/CustomerTable',
-    element: <CustomerTable/>,
+    path: '/Cart',
+    element: <Cart/>,
+  },
+  {
+    path: '/Orders',
+    element: <Orders/>,
+  },
+  {
+    path: '/Customer',
+    element: <Customer/>,
+  },
+  {
+    path: '/Staff',
+    element: <Staff/>,
   },
 
 ]);

@@ -12,8 +12,9 @@ module.exports = {
       colors: {
         primary:{
           light: '#AFAA9E',
-          dark: '#333446'
-        }
+          dark: '#333446',
+        },
+        'custom-gray': '#AFAA9E',
       },
       borderRadius: {
         'custom-xs': '3px',
