@@ -5,5 +5,7 @@ export default function Dashboard() {
     <div className='flex justify-center'>
       Welcome to Dashboard
     </div>
+
+  
   )
 }

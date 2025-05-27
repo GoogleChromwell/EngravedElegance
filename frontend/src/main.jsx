@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import NotFoundError from './components/RouterErrors/NotFoundError.jsx'
 import Register from './components/Authentication/Register.jsx'
+import CustomerTable from './components/Tables/CustomerTable.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: '/Register',
     element: <Register/>,
+  },
+  {
+    path: '/CustomerTable',
+    element: <CustomerTable/>,
   },
 
 ]);
