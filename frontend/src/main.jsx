@@ -12,6 +12,10 @@ import Cart from './pages/Cart.jsx'
 import Orders from './pages/Orders.jsx'
 import Customer from './pages/Customer.jsx'
 import Staff from './pages/Staff.jsx'
+import CustomerTables from './components/Tables/CustomerTables.jsx'
+import CustomTable from './components/Tables/CustomTable.jsx'
+import HeaderBar from './components/Tables/HeaderBar.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -43,6 +47,22 @@ const router = createBrowserRouter([
     path: '/Staff',
     element: <Staff/>,
   },
+
+   {
+    path: '/CustomerTables',
+    element: <CustomerTables/>,
+  },
+
+  {
+    path: '/CustomTable',
+    element: <CustomTable/>,
+  },
+
+  {
+    path: '/HeaderBar',
+    element: <HeaderBar/>,
+  },
+  
 
 ]);
 
