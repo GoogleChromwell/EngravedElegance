@@ -13,6 +13,7 @@ import Orders from './pages/Orders.jsx'
 import Customer from './pages/Customer.jsx'
 import Staff from './pages/Staff.jsx'
 
+
 const router = createBrowserRouter([
   {
     path: '/',
