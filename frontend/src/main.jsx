@@ -12,6 +12,7 @@ import Cart from './pages/Cart.jsx'
 import Orders from './pages/Orders.jsx'
 import Customer from './pages/Customer.jsx'
 import Staff from './pages/Staff.jsx'
+import Niel from './components/Tables/NieL.jsx'
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
   {
     path: '/Staff',
     element: <Staff/>,
+  },
+
+  {
+    path: '/Niel',
+    element: <Niel/>,
   },
 
 ]);
