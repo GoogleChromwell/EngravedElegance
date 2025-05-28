@@ -8,10 +8,10 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 
 export default function Sidebar() {
   return (
-    <div className="flex flex-col bg-primary-dark w-fit min-h-screen p-[8px] gap-[16px]">
+    <div className="flex flex-col bg-primary-dark w-fit min-h-screen p-[10px] gap-[16px]">
       <div className="flex place-items-center gap-2">
-        <img src="../public/revised.png" alt="" className="size-[28px]" />
-        <h1 className="text-white font-poppins text-[12px] font-medium">
+        <img src="../public/revised.png" alt="" className="size-[32px]" />
+        <h1 className="text-white font-poppins text-[14px] font-medium">
           Engraved Elegance
         </h1>
       </div>
@@ -21,10 +21,10 @@ export default function Sidebar() {
           to={"/"}
           className={({ isActive }) =>
             `flex place-items-center gap-[5px] w-full p-[5px]
-            font-poppins text-[10px] font-light text-white rounded-custom-xs
+            font-poppins text-[12px] font-medium text-white rounded-custom-xs
             ${isActive ? 'bg-custom-gray bg-opacity-30': 'bg-opacity-0'}`}
         >
-          <HomeOutlinedIcon style={{ fontSize: "18px" }} />
+          <HomeOutlinedIcon style={{ fontSize: "24px" }} />
           <span className="pt-0.5"> Home </span>
         </NavLink>
 
@@ -32,10 +32,10 @@ export default function Sidebar() {
           to={"/Dashboard"}
           className={({ isActive }) =>
             `flex place-items-center gap-[5px] w-full p-[5px]
-            font-poppins text-[10px] font-light text-white rounded-custom-xs
+            font-poppins text-[12px] font-medium text-white rounded-custom-xs
             ${isActive ? 'bg-custom-gray bg-opacity-30': 'bg-opacity-0'}`}
         >
-          <DashboardOutlinedIcon style={{ fontSize: "18px" }} />
+          <DashboardOutlinedIcon style={{ fontSize: "24px" }} />
           Dashboard
         </NavLink>
 
@@ -43,10 +43,10 @@ export default function Sidebar() {
           to={"/Cart"}
           className={({ isActive }) =>
             `flex place-items-center gap-[5px] w-full p-[5px]
-            font-poppins text-[10px] font-light text-white rounded-custom-xs
+            font-poppins text-[12px] font-medium text-white rounded-custom-xs
             ${isActive ? 'bg-custom-gray bg-opacity-30': 'bg-opacity-0'}`}
         >
-          <ShoppingCartOutlinedIcon style={{ fontSize: "18px" }} />
+          <ShoppingCartOutlinedIcon style={{ fontSize: "24px" }} />
           Cart
         </NavLink>
 
@@ -54,18 +54,18 @@ export default function Sidebar() {
           to={"/Orders"}
           className={({ isActive }) =>
             `flex place-items-center gap-[5px] w-full p-[5px]
-            font-poppins text-[10px] font-light text-white rounded-custom-xs
+            font-poppins text-[12px] font-medium text-white rounded-custom-xs
             ${isActive ? 'bg-custom-gray bg-opacity-30': 'bg-opacity-0'}`}
         >
-          <Inventory2OutlinedIcon style={{ fontSize: "18px" }} />
+          <Inventory2OutlinedIcon style={{ fontSize: "24px" }} />
           Orders
         </NavLink>
 
-        <hr className="w-full" />
+        <hr className="w-full my-3" />
 
         <h1
-          className="w-full pl-[5px]
-                    text-white text-left font-poppins text-[10px] font-medium"
+          className="w-full pl-[7px]
+                    text-white text-left font-poppins text-[14px] font-medium"
         >
           User Management
         </h1>
@@ -74,10 +74,10 @@ export default function Sidebar() {
           to={"/Customer"}
           className={({ isActive }) =>
             `flex place-items-center gap-[5px] w-full p-[5px]
-            font-poppins text-[10px] font-light text-white rounded-custom-xs
+            font-poppins text-[12px] font-medium text-white rounded-custom-xs
             ${isActive ? 'bg-custom-gray bg-opacity-30': 'bg-opacity-0'}`}
         >
-          <PersonOutlineOutlinedIcon style={{ fontSize: "20px" }} />
+          <PersonOutlineOutlinedIcon style={{ fontSize: "24px" }} />
           <span className="pt-0.5"> Customer </span>
         </NavLink>
 
@@ -85,11 +85,11 @@ export default function Sidebar() {
           to={"/Staff"}
           className={({ isActive }) =>
             `flex place-items-center gap-[5px] w-full p-[5px]
-            font-poppins text-[10px] font-light text-white rounded-custom-xs
+            font-poppins text-[12px] font-medium text-white rounded-custom-xs
             ${isActive ? 'bg-custom-gray bg-opacity-30': 'bg-opacity-0'}`}
         >
-          <PersonOutlineOutlinedIcon style={{ fontSize: "20px" }} />
-          <span className="pt-0.5"> Staff</span>
+          <PersonOutlineOutlinedIcon style={{ fontSize: "24px" }} />
+          <span className="pt-0.5"> Staff </span>
         </NavLink>
       </div>
     </div>
