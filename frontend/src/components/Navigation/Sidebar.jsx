@@ -8,7 +8,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 
 export default function Sidebar() {
   return (
-    <div className="flex flex-col bg-primary-dark w-fit min-h-screen p-[10px] gap-[16px]">
+    <div className="flex flex-col bg-primary-dark w-fit min-h-screen p-[8px] gap-[16px]">
       <div className="flex place-items-center gap-2">
         <img src="../public/revised.png" alt="" className="size-[28px]" />
         <h1 className="text-white font-poppins text-[12px] font-medium">
