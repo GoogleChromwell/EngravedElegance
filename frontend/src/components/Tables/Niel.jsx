@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Niel() {
   return (
-    <body className="bg-[#fefbf6] min-h-screen p-6">
+    <body className="bg-[#fefbf6] ">
   <div className="max-w-5xl mx-auto">
   <h2 className="text-black font-semibold text-base mb-4">Customer Management</h2>
   <div className="overflow-x-auto border border-t-0 border-gray-300 rounded-b-md">
