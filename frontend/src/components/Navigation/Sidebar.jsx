@@ -11,7 +11,7 @@ export default function Sidebar() {
     <div className="flex flex-col bg-primary-dark w-fit h-screen p-[10px] gap-[16px] sticky top-0">
       <div className="flex place-items-center gap-2">
         <img src="../public/revised.png" alt="" className="size-[32px]" />
-        <h1 className="text-white font-poppins text-[14px] font-medium">
+        <h1 className="text-white font-poppins text-[12px] font-medium">
           Engraved Elegance
         </h1>
       </div>

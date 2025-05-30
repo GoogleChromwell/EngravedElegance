@@ -1,17 +1,13 @@
-import React from 'react'
-import Sidebar from '../components/Navigation/Sidebar'
-import Layout from '../components/Layout/Layout'
+import React from "react";
+import Layout from "../components/Layout/Layout";
+import SalesReport from "../components/Dashboard/SalesReport";
 
 export default function Dashboard() {
   return (
-    <div className=''>
-      <Layout>
-        <div className="flex justify-center">
-            <h1>This is the dashboard</h1>
-        </div>
-      </Layout>
-    </div>
-
-  
-  )
+    <Layout>
+      <div className="flex flex-col h-full">
+        <SalesReport/>
+      </div>
+    </Layout>
+  );
 }
