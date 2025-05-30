@@ -39,6 +39,9 @@ export default function Sidebar() {
           Dashboard
         </NavLink>
 
+
+
+
         <NavLink
           to={"/Cart"}
           className={({ isActive }) =>
@@ -50,6 +53,8 @@ export default function Sidebar() {
           Cart
         </NavLink>
         
+
+        <hr className="border border-primary-light w-full border-opacity-30"/>
         <h1
           className="w-full pl-[7px]
                     text-white text-left font-poppins text-[14px] font-medium"
