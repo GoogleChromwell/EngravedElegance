@@ -12,7 +12,7 @@ export default function Orders() {
      
 
       <div className="overflow-auto flex-grow">
-        <table className="table-auto w-full text-center min-h-full">
+        <table className="table-auto w-full text-center min-h-full font-poppins">
           <thead className="border-b border-primary-dark border-opacity-30 text-[12px] font-bold">
             <tr>
               <th>ID</th>
