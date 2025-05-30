@@ -49,20 +49,7 @@ export default function Sidebar() {
           <ShoppingCartOutlinedIcon style={{ fontSize: "24px" }} />
           Cart
         </NavLink>
-
-        <NavLink
-          to={"/Orders"}
-          className={({ isActive }) =>
-            `flex place-items-center gap-[5px] w-full p-[5px]
-            font-poppins text-[12px] font-medium text-white rounded-custom-xs
-            ${isActive ? 'bg-custom-gray bg-opacity-30': 'bg-opacity-0'}`}
-        >
-          <Inventory2OutlinedIcon style={{ fontSize: "24px" }} />
-          Orders
-        </NavLink>
-
-        <hr className="w-full my-3" />
-
+        
         <h1
           className="w-full pl-[7px]
                     text-white text-left font-poppins text-[14px] font-medium"
