@@ -56,8 +56,8 @@ export default function Sidebar() {
 
         <hr className="border border-primary-light w-full border-opacity-30"/>
         <h1
-          className="w-full pl-[7px]
-                    text-white text-left font-poppins text-[14px] font-medium"
+          className="w-full pl-[8px]
+                    text-white text-left font-poppins text-[12px] font-medium"
         >
           User Management
         </h1>

@@ -13,17 +13,17 @@ export default function CartSummary() {
         <div className="flex flex-col gap-2 text-[12px] font-medium">
           <div className="flex justify-between">
             <p>Subtotal: </p>
-            <p> ₱200 </p>
+            <p> ₱0 </p>
           </div>
 
           <div className="flex justify-between">
             <p>Promo Discount: </p>
-            <p> ₱50 </p>
+            <p> ₱0 </p>
           </div>
 
           <div className="flex justify-between text-[16px] font-bold">
             <p>Total: </p>
-            <p> ₱200 </p>
+            <p> ₱0 </p>
           </div>
         </div>
       </div>
