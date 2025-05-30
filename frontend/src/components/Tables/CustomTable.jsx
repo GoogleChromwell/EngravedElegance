@@ -16,7 +16,7 @@ export default function CustomTable() {
           </tr>
         </thead>
         <tbody>
-          {/* Table rows go here */}
+          {/* Table */}
         </tbody>
       </table>
     </div>
