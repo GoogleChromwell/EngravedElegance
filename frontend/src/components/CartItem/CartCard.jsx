@@ -23,11 +23,11 @@ export default function CartCard() {
   return (
     <div
       className="
-      flex gap-7
+      flex gap-7 rounded-custom-xs
       bg-white border border-primary-dark border-opacity-30 w-full p-3"
     >
       <div className="w-[45%] h-full border border-primary-dark border-opacity-30"></div>
-      <div className="flex flex-col justify-between w-full">
+      <div className="flex flex-col justify-between w-full rounded-custom-xs">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between text-[16px] font-bold">
             <h1> Wooden Coaster </h1>
