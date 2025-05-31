@@ -35,22 +35,22 @@ export default function ProductCard({
 
       
         <div className="flex flex-col gap-1 mb-1">
-          <h2 className="text-[16px] font-medium">{name}</h2>
+          <h2 className="text-[16px] font-bold">{name}</h2>
           <p className="text-[12px] w-44">{description}</p>
         </div>
       </div>
 
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <h1 className="text-[16px] font-semibold">₱{price}</h1>
+          <h1 className="text-[16px] font-bold">₱{price}</h1>
           <div className="border border-primary-dark border-opacity-15 rounded-custom-xs p-[4px]">
-            <p className="text-[10px] font-medium">{quantity} items</p>
+            <p className="text-[10px] font-semibold">{quantity} items</p>
           </div>
         </div>
 
         <button
           onClick={addToCart}
-          className="bg-primary-dark text-[14px] text-white font-medium p-[6px] rounded-custom-xs"
+          className="bg-primary-dark text-[12px] text-white font-medium p-[6px] rounded-custom-xs"
         >
           Add to Cart
         </button>
