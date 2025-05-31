@@ -34,13 +34,13 @@ export default function ProductCard({
         <div className="border border-primary-dark border-opacity-20 w-full h-36 "></div>
 
       
-        <div className="flex flex-col gap-1 mb-1">
+        <div className="flex flex-col gap-1 mb-1 text-primary-dark">
           <h2 className="text-[16px] font-bold">{name}</h2>
           <p className="text-[12px] w-44">{description}</p>
         </div>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 text-primary-dark">
         <div className="flex items-center justify-between">
           <h1 className="text-[16px] font-bold">₱{price}</h1>
           <div className="border border-primary-dark border-opacity-15 rounded-custom-xs p-[4px]">
