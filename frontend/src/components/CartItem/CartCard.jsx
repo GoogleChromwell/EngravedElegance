@@ -10,7 +10,7 @@ export default function CartCard({ cart_id, product_name, quantity, price }) {
   const onDelete = () => {
     axios
       .post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/DeleteCartProduct.php",
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/DeleteCartProduct.php",
         { cart_id: cart_id }, 
         { headers: { "Content-Type": "application/json" } }
       )
@@ -21,7 +21,7 @@ export default function CartCard({ cart_id, product_name, quantity, price }) {
   const updateQuantity = (newQuantity) => {
     axios
       .put(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/UpdateCartQuantity.php",
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
         {
           cart_id,
           quantity: newQuantity,
@@ -40,7 +40,7 @@ export default function CartCard({ cart_id, product_name, quantity, price }) {
     const newQuantity = cartQuantity + 1;
     axios
       .put(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/UpdateCartQuantity.php",
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
         {
           cart_id,
           quantity: newQuantity,
@@ -60,7 +60,7 @@ export default function CartCard({ cart_id, product_name, quantity, price }) {
       const newQuantity = cartQuantity - 1;
       axios
         .put(
-          "http://localhost/Engraved-Clone/EngravedElegance/backend/UpdateCartQuantity.php",
+          "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
           {
             cart_id,
             quantity: newQuantity,

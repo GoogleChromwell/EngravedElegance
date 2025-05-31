@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         try {
-            require_once "connection.inc.php";
+            require_once "../connection.inc.php";
 
             $query = "
                 INSERT INTO carts(product_id, quantity) 

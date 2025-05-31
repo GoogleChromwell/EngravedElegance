@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {   // or use DELETE if you prefer
     }
 
     try {
-        require_once "connection.inc.php";
+        require_once "../connection.inc.php";
 
         $stmt = $pdo->prepare("DELETE FROM carts WHERE cart_id = :cart_id");
         $stmt->execute([":cart_id" => $cartID]);

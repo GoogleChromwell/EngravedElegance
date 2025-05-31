@@ -10,7 +10,7 @@ export default function ProductCard({
   const addToCart = async () => {
     try {
       await axios.post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/AddToCart.php",
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/AddToCart.php",
         {
           product_id: productID,
           quantity: 1,

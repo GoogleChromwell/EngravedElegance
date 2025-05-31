@@ -22,7 +22,7 @@
             $password = $data["password"];
 
             try {
-                require_once "connection.inc.php";
+                require_once "../connection.inc.php";
                 
                 $query = "
                 INSERT INTO users(username, email, password) 

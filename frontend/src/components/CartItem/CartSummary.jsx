@@ -6,7 +6,7 @@ export default function CartSummary() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/CartTotal.php"
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/CartTotal.php"
       )
       .then((res) => {
         const total = parseFloat(res.data[0]?.total_cart_value) || 0;
