@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
-import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import axios from "axios";
 
 export default function Overview() {
+  const [sales, setSales] = useState(0);
+  const [orders, setOrders] = useState(0);
+  const [earnings, setEarnings] = useState(0);
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Dashboard/Revenue.php"
+      )
+      .then((res) => {
+        const data = res.data[0]; // only one row
+        setSales(Number(data?.Sales || 0));
+        setOrders(Number(data?.Orders || 0));
+        setEarnings(Number(data?.Earnings || 0))
+        // If you add earnings in PHP
+        // setEarnings(Number(data?.Earnings || 0));
+      })
+      .catch((err) => console.error("Error fetching totals:", err));
+  }, []);
+
   return (
     <div className="flex w-full h-fit justify-between gap-2 font-semibold text-[16px] text-primary-dark">
       <div className=" w-full font-bold p-3 border bg-white border-primary-dark border-opacity-30 rounded-custom-xs">
@@ -26,8 +46,14 @@ export default function Overview() {
               />
             </div>
             <div className="flex flex-col gap-4">
-              <h1 className="text-[16px]">₱50.00</h1>
-              <p className="text-[12px]">*Updated every successful order</p>
+              <h1 className="text-[16px]">
+                {Number(sales).toLocaleString("en-PH", {
+                  style: "currency",
+                  currency: "PHP",
+                })}
+              </h1>
+
+              <p className="text-[12px]">*Total daily sales</p>
             </div>
           </div>
         </div>
@@ -42,7 +68,10 @@ export default function Overview() {
               />
             </div>
             <div className="flex flex-col gap-4">
-              <h1 className="text-[16px]">₱500.00</h1>
+              {Number(earnings).toLocaleString("en-PH", {
+                  style: "currency",
+                  currency: "PHP",
+                })}
               <p className="text-[12px]">*Total daily orders</p>
             </div>
           </div>
@@ -58,7 +87,7 @@ export default function Overview() {
               />
             </div>
             <div className="flex flex-col gap-4">
-              <h1 className="text-[16px]">500</h1>
+              <h1 className="text-[16px]">{orders}</h1>
               <p className="text-[12px]">*Total daily orders</p>
             </div>
           </div>

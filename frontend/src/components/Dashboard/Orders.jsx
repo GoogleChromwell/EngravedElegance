@@ -1,42 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Orders() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Dashboard/DisplayOrders.php"
+      )
+      .then((res) => setOrders(res.data))
+      .catch((err) => console.error("Error fetching orders:", err));
+  }, []);
+
   return (
     <div className="flex flex-col bg-white w-full border border-primary-dark border-opacity-30 shadow-md p-4 text-primary-dark h-full">
-      <div className="flex justify-between items-center mb-5"> 
-         <h1 className="text-[16px] font-bold">Recent Orders</h1>
-         <select name="" id="" className="text-[12px] font-semibold p-1 border border-primary-dark border-opacity-30 rounded-custom-xs">
-           <option value="Wooden Coaster"> Wooden Coaster</option>
-         </select>
+      <div className="flex justify-between items-center mb-5">
+        <h1 className="text-[16px] font-bold">Orders</h1>
       </div>
-     
 
       <div className="overflow-auto flex-grow">
         <table className="table-auto w-full text-center min-h-full font-poppins">
-          <thead className="border-b border-primary-dark border-opacity-30 text-[12px] font-bold">
+          <thead className="border-b border-primary-dark border-opacity-30 text-[14px] font-semibold">
             <tr>
               <th>ID</th>
               <th>Customer Name</th>
               <th>Product Name</th>
-              <th>Price</th>
+              <th>Total Price</th>
+              <th>Quantity</th>
               <th>Date Ordered</th>
             </tr>
           </thead>
-          <tbody className="text-[10px] font-semibold">
-            <tr>
-              <td>1</td>
-              <td>Cromwell Naval</td>
-              <td>Wooden Coaster</td>
-              <td>₱100</td>
-              <td>May 30 2025</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Cromwell Naval</td>
-              <td>Name Magnet</td>
-              <td>₱150</td>
-              <td>May 30 2025</td>
-            </tr>
+
+          <tbody className="text-[12px] font-medium">
+            {orders.map((order) =>
+              order.items.map((item, index) => (
+                <tr key={`${order.order_id}-${index}`}>
+                  {index === 0 && (
+                    <>
+                      <td rowSpan={order.items.length}>{order.order_id}</td>
+                      <td rowSpan={order.items.length}>
+                        {order.customer_name}
+                      </td>
+                    </>
+                  )}
+                  <td>{item.product_name}</td>
+                  <td>
+                    {index === 0 &&
+                      Number(order.total_price).toLocaleString("en-PH", {
+                        style: "currency",
+                        currency: "PHP",
+                      })}
+                  </td>
+                  <td>{item.quantity}</td>
+                  <td>
+                    {index === 0 &&
+                      new Date(order.order_date).toLocaleDateString("en-PH", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

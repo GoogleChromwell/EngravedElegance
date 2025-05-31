@@ -24,6 +24,7 @@ export default function CartPage() {
           <CartCard
             key={item.cart_id}
             cart_id={item.cart_id}
+            product_description={item.product_description}
             product_name={item.product_name}
             price={item.price}
             quantity={item.cart_quantity}

@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import axios from "axios";
 
-export default function CartCard({ cart_id, product_name, quantity, price }) {
+export default function CartCard({ cart_id, product_name, product_description, quantity, price }) {
   const [cartQuantity, setQuantity] = useState(Number(quantity) || 1);
 
   const onDelete = () => {
@@ -94,32 +94,8 @@ export default function CartCard({ cart_id, product_name, quantity, price }) {
             <h1>₱{price}</h1>
           </div>
 
-          <div className="flex items-center text-[12px] font-medium gap-1">
-            <label htmlFor="name" className="min-w-[40px]">
-              Name:
-            </label>
-            <input
-              id="name"
-              type="text"
-              className="border-b border-primary-dark outline-none w-[35%] text-[12px]"
-            />
-          </div>
-
-          <div className="flex gap-2 items-center font-medium text-[12px]">
-            <p>Color:</p>
-            {Object.keys(colorClasses).map((color) => (
-              <label className="relative" key={color}>
-                <input
-                  type="radio"
-                  name={`color-${product_name}`}
-                  value={color}
-                  className="peer hidden"
-                />
-                <div
-                  className={`w-5 h-5 rounded-full ${colorClasses[color]} cursor-pointer border shadow`}
-                ></div>
-              </label>
-            ))}
+          <div className="text-[12px] font-medium">
+            <p>{product_description}</p>
           </div>
         </div>
 

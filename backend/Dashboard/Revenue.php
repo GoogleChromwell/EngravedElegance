@@ -6,25 +6,19 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 header("Access-Control-Allow-Credentials: true");
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-    http_response_code(200); exit();
+    http_response_code(200);
+    exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     try {
-       require_once "../connection.inc.php";
+        require_once "../connection.inc.php";
 
-        $query = "
-          SELECT 
-            carts.cart_id,
-            carts.quantity            AS cart_quantity,      -- alias
-            products.product_id,
-            products.product_name,
-            products.product_description,    
-            products.price,
-            products.quantity         AS stock_quantity      -- alias
-          FROM carts
-          JOIN products ON carts.product_id = products.product_id
-        ";
+        $query = "SELECT 
+                    SUM(total_price) AS Sales, 
+                    COUNT(order_id) AS Orders,
+                    SUM(total_price) * 0.30 AS Earnings 
+                    FROM orders;";
 
         $stmt = $pdo->query($query);
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)); // 🚀 JSON out
