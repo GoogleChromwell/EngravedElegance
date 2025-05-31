@@ -1,6 +1,29 @@
 import React from "react";
+import axios from "axios";
+export default function ProductCard({
+  productID,
+  name,
+  description,
+  price,
+  quantity,
+}) {
+  const addToCart = async () => {
+    try {
+      await axios.post(
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/AddToCart.php",
+        {
+          product_id: productID,
+          quantity: 1,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      alert("Added to cart!");
+    } catch (error) {
+      console.error("Add-to-cart error:", error);
+      alert("Add to cart failed");
+    }
+  };
 
-export default function ProductCard({ name, description, price, quantity }) {
   return (
     <div
       className="
@@ -23,7 +46,10 @@ export default function ProductCard({ name, description, price, quantity }) {
           </div>
         </div>
 
-        <button className="bg-primary-dark text-[12px] text-white font-medium p-[6px] rounded-custom-xs">
+        <button
+          onClick={addToCart}
+          className="bg-primary-dark text-[12px] text-white font-medium p-[6px] rounded-custom-xs"
+        >
           Add to Cart
         </button>
       </div>

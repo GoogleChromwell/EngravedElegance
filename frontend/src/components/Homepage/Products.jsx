@@ -22,8 +22,9 @@ export default function Products() {
         {products.map((product, index) => (
           <ProductCard 
           key={{index}}
-          name={product["product-name"]}
-          description={product["product-description"]}
+          productID={product["product_id"]}
+          name={product["product_name"]}
+          description={product["product_description"]}
           price={product.price}
           quantity={product.quantity}/>
         ))}
