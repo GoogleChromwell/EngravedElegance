@@ -19,15 +19,21 @@ export default function CartPage() {
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      {cartItems.map((item) => (
-        <CartCard
-          key={item.cart_id}
-          cart_id={item.cart_id} // <- now passing cart ID
-          product_name={item.product_name}
-          price={item.price}
-          quantity={item.cart_quantity}
-        />
-      ))}
+      {cartItems.length > 0 ? (
+        cartItems.map((item) => (
+          <CartCard
+            key={item.cart_id}
+            cart_id={item.cart_id}
+            product_name={item.product_name}
+            price={item.price}
+            quantity={item.cart_quantity}
+          /> 
+        ))
+      ) : (
+        <div className="text-center text-[16px] font-bold">
+          🛒 Your cart is empty. Add some products!
+        </div>
+      )}
     </div>
   );
 }

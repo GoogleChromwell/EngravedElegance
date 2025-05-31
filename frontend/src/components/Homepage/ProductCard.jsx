@@ -17,7 +17,7 @@ export default function ProductCard({
         },
         { headers: { "Content-Type": "application/json" } }
       );
-      alert("Added to cart!");
+      window.location.reload(); 
     } catch (error) {
       console.error("Add-to-cart error:", error);
       alert("Add to cart failed");
