@@ -6,8 +6,8 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 
 export default function Overview() {
   return (
-    <div className="flex w-full h-fit justify-between gap-2 font-semibold text-[14px] text-primary-dark">
-      <div className=" w-full font-bold p-3 border bg-white border-primary-dark border-opacity-30 rounded-custom-xs shadow-md">
+    <div className="flex w-full h-fit justify-between gap-2 font-semibold text-[16px] text-primary-dark">
+      <div className=" w-full font-bold p-3 border bg-white border-primary-dark border-opacity-30 rounded-custom-xs">
         Revenue
       </div>
 

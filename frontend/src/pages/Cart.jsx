@@ -6,11 +6,12 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import CartCard from "../components/CartItem/CartCard";
 import CartSummary from "../components/CartItem/CartSummary";
+import CartProducts from "../components/CartItem/CartProducts"
 export default function Carts() {
   return (
     <Layout>
       <div className="flex gap-3 w-full p-5">
-        <CartCard />
+        <CartProducts/>
         <CartSummary/>
       </div>
     </Layout>

@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     try {
-        require_once "connection.inc.php";
+        require_once "../connection.inc.php";
 
-        $query = "SELECT `product-id`, `product-name`, `product-description`, `price`, `quantity` FROM products";
+        $query = "SELECT `product_id`, `product_name`, `product_description`, `price`, `quantity` FROM products";
         $stmt = $pdo->prepare($query);
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);

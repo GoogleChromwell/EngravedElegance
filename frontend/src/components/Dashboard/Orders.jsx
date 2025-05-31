@@ -4,7 +4,7 @@ export default function Orders() {
   return (
     <div className="flex flex-col bg-white w-full border border-primary-dark border-opacity-30 shadow-md p-4 text-primary-dark h-full">
       <div className="flex justify-between items-center mb-5"> 
-         <h1 className="text-[14px] font-bold">Recent Orders</h1>
+         <h1 className="text-[16px] font-bold">Recent Orders</h1>
          <select name="" id="" className="text-[12px] font-semibold p-1 border border-primary-dark border-opacity-30 rounded-custom-xs">
            <option value="Wooden Coaster"> Wooden Coaster</option>
          </select>

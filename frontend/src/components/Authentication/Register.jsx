@@ -23,7 +23,7 @@ export default function Register() {
         const onSubmit = async (values, {resetForm}) => {
            try {
             const response = await axios.post(
-                "http://localhost/EngravedElegance/backend/Registration.php",
+                "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Registration.php",
                 values,
                 {
                     headers: {
