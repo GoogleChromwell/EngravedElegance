@@ -10,7 +10,6 @@ export default function HomePage() {
     <>
       <Layout>
         <div className="flex flex-col">
-            <Categories/>
             <Products/>
         </div>
       </Layout>

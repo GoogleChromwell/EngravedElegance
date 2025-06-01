@@ -11,30 +11,42 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $input = file_get_contents("php://input");
-
-    $data =  json_decode($input, true);
+    $data = json_decode($input, true);
 
     if (isset($data["product_id"], $data["quantity"])) {
         $productID = $data["product_id"];
         $quantity = $data["quantity"];
 
-
         try {
             require_once "../connection.inc.php";
 
-            $query = "
-                INSERT INTO carts(product_id, quantity) 
-                VALUES (:product_id, :quantity);";
+            // Check if the product is already in the cart
+            $checkQuery = "SELECT quantity FROM carts WHERE product_id = :product_id";
+            $checkStmt = $pdo->prepare($checkQuery);
+            $checkStmt->execute([':product_id' => $productID]);
+            $existingItem = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([
-                ":product_id" => $productID,
-                ":quantity" => $quantity,
-            ]);
-
-            echo json_encode(["message" => "User registered successfully"]);
+            if ($existingItem) {
+                // Product exists, update quantity
+                $newQuantity = $existingItem['quantity'] + $quantity;
+                $updateQuery = "UPDATE carts SET quantity = :quantity WHERE product_id = :product_id";
+                $updateStmt = $pdo->prepare($updateQuery);
+                $updateStmt->execute([
+                    ':quantity' => $newQuantity,
+                    ':product_id' => $productID,
+                ]);
+                echo json_encode(["message" => "Cart updated with new quantity"]);
+            } else {
+                // Product not in cart, insert new row
+                $insertQuery = "INSERT INTO carts (product_id, quantity) VALUES (:product_id, :quantity)";
+                $insertStmt = $pdo->prepare($insertQuery);
+                $insertStmt->execute([
+                    ':product_id' => $productID,
+                    ':quantity' => $quantity,
+                ]);
+                echo json_encode(["message" => "Product added to cart"]);
+            }
         } catch (PDOException $e) {
             http_response_code(500);
             echo json_encode(["error" => "Database error: " . $e->getMessage()]);
@@ -47,16 +59,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     http_response_code(405);
     echo json_encode(["error" => "Method not allowed"]);
 }
-
-
-
-
-
-// $query = "
-        // SELECT 
-        //     carts.cart_id, 
-        //     products.product_id, 
-        //     products.quantity AS product_quantity
-        // FROM carts
-        // JOIN products ON carts.product_id = products.product_id
-        // ";

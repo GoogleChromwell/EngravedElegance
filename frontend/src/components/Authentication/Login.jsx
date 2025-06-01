@@ -2,10 +2,38 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignupSchema = Yup.object().shape({});
 
-export default function Login({onSignupClick}) {
+export default function Login({ onSignupClick }) {
+  const onSubmit = async (values, { resetForm }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Login.php",
+        values,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      console.log("Raw response:", response); // log full response
+      console.log("Response data:", response.data);
+
+      if (response.data && response.data.message === "Login successful") {
+        toast.success("Login Success!");
+        resetForm();
+      } else {
+        toast.error("Invalid login credentials");
+      }
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message || error);
+      toast.error("Login Failed (catch)");
+    }
+  };
+
   const initialValues = {
     email: "",
     password: "",
@@ -22,12 +50,14 @@ export default function Login({onSignupClick}) {
 
   return (
     <div className="w-full h-auto">
+      <ToastContainer />
       <div className=" w-full h-auto justify-center items-center p-5 rounded-[5px]">
         <h1 className="text-center font-bold  text-[18px] pb-5"> Sign In </h1>
 
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
+          onSubmit={onSubmit}
         >
           <Form className="flex flex-col gap-5">
             <div>

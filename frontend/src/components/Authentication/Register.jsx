@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
-
+import { toast, ToastContainer } from "react-toastify";
 export default function Register({ onBackToLogin }) {
   const initialValues = {
     username: "",
@@ -27,7 +27,10 @@ export default function Register({ onBackToLogin }) {
     try {
       const response = await axios.post(
         "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Registration.php",
-        values,
+        {
+          values,
+          role: "staff",
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -36,20 +39,19 @@ export default function Register({ onBackToLogin }) {
       );
 
       console.log("Registration Success: ", response.data);
-      alert("Registration Successfull!");
+      toast.success("Registration Success!");
       resetForm();
     } catch (error) {
       console.error("Error: ".error);
-      alert("Registration Failed");
+      toast.error("Registration Failed");
     }
   };
 
   return (
     <div className="w-full h-full">
+      <ToastContainer />
       <div className="w-[360px] h-auto justify-center items-center p-5 rounded-[5px]">
-        <h1 className="text-center font-bold  text-[18px] pb-5">
-          Sign Up
-        </h1>
+        <h1 className="text-center font-bold  text-[18px] pb-5">Sign Up</h1>
 
         <Formik
           initialValues={initialValues}
@@ -133,7 +135,6 @@ export default function Register({ onBackToLogin }) {
                   component="div"
                 />
               </div>
-
             </div>
             <div>
               <div className="space-y-3">

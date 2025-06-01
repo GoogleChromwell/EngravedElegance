@@ -14,13 +14,13 @@ export default function Orders() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-white w-full border border-primary-dark border-opacity-30 shadow-md p-4 text-primary-dark h-full">
+    <div className="flex flex-col bg-white w-full border h-full border-primary-dark border-opacity-30 shadow-md p-4 text-primary-dark">
       <div className="flex justify-between items-center mb-5">
         <h1 className="text-[16px] font-bold">Orders</h1>
       </div>
 
-      <div className="overflow-auto flex-grow">
-        <table className="table-auto w-full text-center min-h-full font-poppins">
+      <div className="overflow-y-auto ">
+        <table className="table-auto w-full text-center font-poppins">
           <thead className="border-b border-primary-dark border-opacity-30 text-[14px] font-semibold">
             <tr>
               <th>ID</th>
@@ -35,7 +35,14 @@ export default function Orders() {
           <tbody className="text-[12px] font-medium">
             {orders.map((order) =>
               order.items.map((item, index) => (
-                <tr key={`${order.order_id}-${index}`}>
+                <tr
+                  key={`${order.order_id}-${index}`}
+                  className={
+                    index === order.items.length - 1
+                      ? "border-b border-primary-dark border-opacity-30"
+                      : ""
+                  }
+                >
                   {index === 0 && (
                     <>
                       <td rowSpan={order.items.length}>{order.order_id}</td>

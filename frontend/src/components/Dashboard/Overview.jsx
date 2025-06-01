@@ -15,12 +15,10 @@ export default function Overview() {
         "http://localhost/Engraved-Clone/EngravedElegance/backend/Dashboard/Revenue.php"
       )
       .then((res) => {
-        const data = res.data[0]; // only one row
+        const data = res.data[0];
         setSales(Number(data?.Sales || 0));
         setOrders(Number(data?.Orders || 0));
         setEarnings(Number(data?.Earnings || 0))
-        // If you add earnings in PHP
-        // setEarnings(Number(data?.Earnings || 0));
       })
       .catch((err) => console.error("Error fetching totals:", err));
   }, []);
@@ -72,7 +70,7 @@ export default function Overview() {
                   style: "currency",
                   currency: "PHP",
                 })}
-              <p className="text-[12px]">*Total daily orders</p>
+              <p className="text-[12px]">*30% of total sales</p>
             </div>
           </div>
         </div>
@@ -88,7 +86,7 @@ export default function Overview() {
             </div>
             <div className="flex flex-col gap-4">
               <h1 className="text-[16px]">{orders}</h1>
-              <p className="text-[12px]">*Total daily orders</p>
+              <p className="text-[12px]">*Total orders placed</p>
             </div>
           </div>
         </div>
@@ -104,7 +102,7 @@ export default function Overview() {
             </div>
             <div className="flex flex-col gap-4">
               <h1 className="text-[16px]">5</h1>
-              <p className="text-[12px]">*Total registered users</p>
+              <p className="text-[12px]">*Registered users</p>
             </div>
           </div>
         </div>
