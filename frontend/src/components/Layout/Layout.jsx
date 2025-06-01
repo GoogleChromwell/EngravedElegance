@@ -29,7 +29,9 @@ export default function Layout({ children }) {
 
       {/* Login Modal */}
       <AuthModal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)}>
-        <Login onSignupClick={openRegister} />
+        <Login 
+        closeModal={() => setLoginOpen(false)}
+        onSignupClick={openRegister} />
       </AuthModal>
 
       {/* Register Modal */}

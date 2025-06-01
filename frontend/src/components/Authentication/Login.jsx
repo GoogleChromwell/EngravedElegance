@@ -1,146 +1,115 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import React from "react";
-import { Link } from "react-router-dom";
-import * as Yup from "yup";
+import React, { useState, useContext } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { UserContext } from "./UserContext";
+import { toast, ToastContainer } from "react-toastify";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-const SignupSchema = Yup.object().shape({});
+export default function Login({ onSignupClick, closeModal }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const { login } = useContext(UserContext);
 
-export default function Login({ onSignupClick }) {
-  const onSubmit = async (values, { resetForm }) => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post(
         "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Login.php",
-        values,
         {
-          headers: { "Content-Type": "application/json" },
+          email: username,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
           withCredentials: true,
         }
       );
 
-      console.log("Raw response:", response); // log full response
-      console.log("Response data:", response.data);
+      console.log("Login Response:", response.data);
 
-      if (response.data && response.data.message === "Login successful") {
-        toast.success("Login Success!");
-        resetForm();
+      if (response.data.username) {
+        login({
+          username: response.data.username,
+          role: response.data.role,
+        });
+
+        if (typeof closeModal === "function") {
+          toast.success("Log in success");
+          closeModal();
+        }
       } else {
-        toast.error("Invalid login credentials");
+        alert("Login failed: " + (response.data.error || "Unknown error"));
       }
     } catch (error) {
-      console.error("Error:", error.response?.data || error.message || error);
-      toast.error("Login Failed (catch)");
+      console.error("Login error:", error);
+
+      if (error.response) {
+        alert("Login failed: " + (error.response.data.error || "Server error"));
+      } else {
+        alert("Login failed: Network or server is unreachable");
+      }
     }
   };
 
-  const initialValues = {
-    email: "",
-    password: "",
-  };
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("*Email is required")
-      .min(1)
-      .max(100)
-      .email('*Email must contain "@"'),
-    password: Yup.string().required("*Password is required"),
-  });
-
   return (
-    <div className="w-full h-auto">
+    <form
+      onSubmit={handleLogin}
+      className="flex flex-col gap-5 p-8 w-[300px] relative"
+    >
       <ToastContainer />
-      <div className=" w-full h-auto justify-center items-center p-5 rounded-[5px]">
-        <h1 className="text-center font-bold  text-[18px] pb-5"> Sign In </h1>
+      <h2 className="text-[18px] font-semibold text-center">Login</h2>
 
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={onSubmit}
+      <input
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Email"
+        className="text-[14px] p-2 border border-primary-dark border-opacity-30 rounded focus:outline-none focus:ring-2 focus:ring-primary-dark"
+        required
+      />
+
+      <div className="relative">
+        <input
+          type={showPassword ? "text" : "password"}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          className="text-[14px] p-2 w-full border border-primary-dark border-opacity-30 rounded focus:outline-none focus:ring-2 focus:ring-primary-dark pr-10"
+          required
+        />
+        <button
+          type="button"
+          onClick={() => setShowPassword((prev) => !prev)}
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500"
         >
-          <Form className="flex flex-col gap-5">
-            <div>
-              <div>
-                <Field
-                  className="
-                            w-full border border-gray-500 p-2 rounded-[5px] 
-                            text-[14px]  font-medium"
-                  placeholder="Email"
-                  id="email"
-                  name="email"
-                ></Field>
-              </div>
-
-              <ErrorMessage
-                className="text-red-500 font-normal  text-[14px]"
-                name="email"
-                component="div"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <div>
-                <div>
-                  <Field
-                    className="
-                                w-full border border-gray-500 p-2 rounded-[5px]
-                                text-[14px]  font-medium"
-                    placeholder="Password"
-                    id="password"
-                    name="password"
-                  ></Field>
-                </div>
-
-                <ErrorMessage
-                  className="text-red-500 font-normal  text-[14px] pb-3"
-                  name="password"
-                  component="div"
-                />
-              </div>
-
-              <div className="flex justify-between place-items-center gap-20">
-                <div className="flex gap-2">
-                  <input
-                    type="checkbox"
-                    className="size-[16px] place-self-center"
-                  />
-                  <p className=" font-medium text-[12px]">Show password</p>
-                </div>
-
-                <div className="flex">
-                  <Link to={"/"} className=" font-medium text-[12px] underline">
-                    {" "}
-                    Forgot Password?
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="space-y-3">
-                <input
-                  type="submit"
-                  value={"Login"}
-                  className="
-                    bg-primary-dark text-white  font-medium text-[14px]
-                    w-full rounded-[5px] h-[42px] active:bg-blue-600"
-                />
-
-                <div className="flex place-items-center font-medium text-[12px] justify-center gap-0.5">
-                  <p className="opacity-50">No account yet?</p>
-                  <button
-                    type="button"
-                    onClick={onSignupClick}
-                    className="underline text-blue-600 hover:text-blue-800"
-                  >
-                    Register
-                  </button>
-                </div>
-              </div>
-            </div>
-          </Form>
-        </Formik>
+          {showPassword ? (
+            <RemoveRedEyeOutlinedIcon style={{ fontSize: 20 }} />
+          ) : (
+            <VisibilityOffOutlinedIcon style={{ fontSize: 20 }} />
+          )}
+        </button>
       </div>
-    </div>
+
+      <button
+        type="submit"
+        className="bg-primary-dark hover:bg-primary text-white text-[14px] p-2 rounded transition-colors"
+      >
+        Login
+      </button>
+
+      <div className="flex items-center justify-center gap-1 text-[12px]">
+        <p>Don't have an account?</p>
+        <button
+          type="button"
+          onClick={onSignupClick}
+          className="text-blue-600 hover:underline"
+        >
+          Register
+        </button>
+      </div>
+    </form>
   );
 }

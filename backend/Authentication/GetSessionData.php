@@ -9,7 +9,8 @@ if (isset($_SESSION["user"])) {
     echo json_encode([
         "loggedIn" => true,
         "username" => $_SESSION["user"]["username"],
-        "email" => $_SESSION["user"]["email"]
+        "email" => $_SESSION["user"]["email"],
+        "role" => $_SESSION["user"]["role"]
     ]);
 } else {
     echo json_encode(["loggedIn" => false]);

@@ -29,7 +29,6 @@ export default function CartSummary() {
       if (response.data.message === "Order placed successfully") {
         toast.success("Order Placed!");
 
-        // Delay refresh by 2 seconds (2000 ms)
         setTimeout(() => {
           window.location.reload();
         }, 3000);
@@ -59,7 +58,7 @@ export default function CartSummary() {
 
   return (
     <div className="flex flex-col p-3 gap-5 text-primary-dark h-fit bg-white border border-primary-dark border-opacity-30 w-full">
-      <ToastContainer />
+      
       <div className="flex flex-col gap-2">
         <h1 className="text-[16px] font-bold">Summary</h1>
 
