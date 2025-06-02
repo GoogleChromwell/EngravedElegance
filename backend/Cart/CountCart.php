@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         require_once "../connection.inc.php";
 
         $query  = "SELECT COUNT(cart_id) AS cart_count FROM carts";
-        $count  = $pdo->query($query)->fetch(PDO::FETCH_COLUMN); // gets the single value
+        $count  = $pdo->query($query)->fetch(PDO::FETCH_COLUMN);
         echo json_encode(['cart_count' => $count]);
     } catch (PDOException $e) {
         http_response_code(500);

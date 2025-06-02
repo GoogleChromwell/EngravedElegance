@@ -58,10 +58,9 @@ export default function CartSummary() {
 
   return (
     <div className="flex flex-col p-3 gap-5 text-primary-dark h-fit bg-white border border-primary-dark border-opacity-30 w-full">
-      
       <div className="flex flex-col gap-2">
         <h1 className="text-[16px] font-bold">Summary</h1>
-
+        <ToastContainer />
         <div className="flex flex-col gap-2 text-[12px] font-medium">
           <div className="flex justify-between">
             <p>Subtotal: </p>

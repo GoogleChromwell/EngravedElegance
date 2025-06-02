@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data = json_decode(file_get_contents("php://input"), true);
         $customer_name = $data['customer_name'];
 
-        // Step 1: Get all cart items with product details
         $cartQuery = "
             SELECT 
                 c.cart_id,
@@ -37,18 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
         }
 
-        // Step 2: Calculate total price
         $total_price = 0;
         foreach ($cartItems as $item) {
             $total_price += $item['cart_quantity'] * $item['price'];
         }
 
-        // Step 3: Insert into orders table
         $orderStmt = $pdo->prepare("INSERT INTO orders (customer_name, total_price) VALUES (?, ?)");
         $orderStmt->execute([$customer_name, $total_price]);
         $order_id = $pdo->lastInsertId();
 
-        // Step 4: Insert into order_items and update stock
         $orderItemStmt = $pdo->prepare("
             INSERT INTO order_items (order_id, product_id, product_name, quantity, price)
             VALUES (?, ?, ?, ?, ?)
@@ -72,8 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $item['product_id']
             ]);
         }
-
-        // Step 5: Clear the cart
+        
         $pdo->exec("DELETE FROM carts");
 
         echo json_encode(["message" => "Order placed successfully"]);

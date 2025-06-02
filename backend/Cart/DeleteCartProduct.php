@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {   // or use DELETE if you prefer
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
     $cartID = $data["cart_id"] ?? null;
 

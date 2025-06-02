@@ -1,3 +1,4 @@
+// Layout.jsx
 import React, { useState } from "react";
 import Sidebar from "../Navigation/Sidebar";
 import HeaderBar from "../Tables/HeaderBar";
@@ -29,9 +30,10 @@ export default function Layout({ children }) {
 
       {/* Login Modal */}
       <AuthModal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)}>
-        <Login 
-        closeModal={() => setLoginOpen(false)}
-        onSignupClick={openRegister} />
+        <Login
+          closeModal={() => setLoginOpen(false)}
+          onSignupClick={openRegister}
+        />
       </AuthModal>
 
       {/* Register Modal */}

@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         ";
 
         $stmt = $pdo->query($query);
-        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC)); // 🚀 JSON out
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 
     } catch (PDOException $e) {
         http_response_code(500);

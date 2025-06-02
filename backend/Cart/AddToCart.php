@@ -20,15 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
             require_once "../connection.inc.php";
-
-            // Check if the product is already in the cart
             $checkQuery = "SELECT quantity FROM carts WHERE product_id = :product_id";
             $checkStmt = $pdo->prepare($checkQuery);
             $checkStmt->execute([':product_id' => $productID]);
             $existingItem = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
             if ($existingItem) {
-                // Product exists, update quantity
                 $newQuantity = $existingItem['quantity'] + $quantity;
                 $updateQuery = "UPDATE carts SET quantity = :quantity WHERE product_id = :product_id";
                 $updateStmt = $pdo->prepare($updateQuery);
@@ -38,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ]);
                 echo json_encode(["message" => "Cart updated with new quantity"]);
             } else {
-                // Product not in cart, insert new row
                 $insertQuery = "INSERT INTO carts (product_id, quantity) VALUES (:product_id, :quantity)";
                 $insertStmt = $pdo->prepare($insertQuery);
                 $insertStmt->execute([
