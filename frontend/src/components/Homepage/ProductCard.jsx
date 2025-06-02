@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 export default function ProductCard({
   productID,
@@ -7,6 +7,16 @@ export default function ProductCard({
   price,
   quantity,
 }) {
+  const [cartButton, setCartButton] = useState("");
+
+  useEffect(() => {
+    if (quantity < 1) {
+      setCartButton("Out of Stock");
+    } else {
+      setCartButton("Add to Cart");
+    }
+  }, [quantity]);
+
   const addToCart = async () => {
     try {
       await axios.post(
@@ -17,7 +27,7 @@ export default function ProductCard({
         },
         { headers: { "Content-Type": "application/json" } }
       );
-      window.location.reload(); 
+      window.location.reload();
     } catch (error) {
       console.error("Add-to-cart error:", error);
       alert("Add to cart failed");
@@ -33,7 +43,6 @@ export default function ProductCard({
       <div className="flex flex-col gap-2">
         <div className="border border-primary-dark border-opacity-20 w-full h-36 "></div>
 
-      
         <div className="flex flex-col gap-1 mb-1 text-primary-dark">
           <h2 className="text-[16px] font-bold">{name}</h2>
           <p className="text-[12px] w-44">{description}</p>
@@ -50,9 +59,14 @@ export default function ProductCard({
 
         <button
           onClick={addToCart}
-          className="bg-primary-dark text-[12px] text-white font-medium p-[6px] rounded-custom-xs"
+          className={`text-[12px] font-medium p-[6px] rounded-custom-xs ${
+            quantity < 1
+              ? "bg-primary-dark bg-opacity-70 text-white"
+              : "bg-primary-dark text-white"
+          }`}
+          disabled={quantity < 1}
         >
-          Add to Cart
+          {cartButton}
         </button>
       </div>
     </div>

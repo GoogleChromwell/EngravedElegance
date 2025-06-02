@@ -36,6 +36,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
         }
 
+        // ✅ Check for insufficient stock
+        $insufficientStockItems = [];
+
+        foreach ($cartItems as $item) {
+            if ($item['cart_quantity'] > $item['product_stock']) {
+                $insufficientStockItems[] = [
+                    "product_id" => $item['product_id'],
+                    "product_name" => $item['product_name'],
+                    "available" => $item['product_stock'],
+                    "requested" => $item['cart_quantity']
+                ];
+            }
+        }
+
+        if (count($insufficientStockItems) > 0) {
+            http_response_code(400);
+            echo json_encode([
+                "error" => "Insufficient stock for some products",
+                "details" => $insufficientStockItems
+            ]);
+            exit();
+        }
+
+        // ✅ Proceed to place order
         $total_price = 0;
         foreach ($cartItems as $item) {
             $total_price += $item['cart_quantity'] * $item['price'];
@@ -68,11 +92,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $item['product_id']
             ]);
         }
-        
+
         $pdo->exec("DELETE FROM carts");
 
         echo json_encode(["message" => "Order placed successfully"]);
-
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(["error" => $e->getMessage()]);

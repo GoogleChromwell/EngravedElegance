@@ -28,11 +28,11 @@ export default function CartSummary() {
 
       if (response.data.message === "Order placed successfully") {
         toast.success("Order Placed!");
-
         setTimeout(() => {
           window.location.reload();
-        }, 3000);
+        }, 2000);
       } else {
+        // Generic error fallback
         toast.error("Something went wrong while placing the order.");
       }
 
@@ -40,7 +40,28 @@ export default function CartSummary() {
       setIsModalOpen(false);
     } catch (error) {
       console.error("Order placement failed:", error);
-      toast.error("Cart is empty");
+
+      if (error.response && error.response.data) {
+        const errorData = error.response.data;
+
+        // Check for specific insufficient stock error
+        if (
+          errorData.error === "Insufficient stock for some products" &&
+          Array.isArray(errorData.details)
+        ) {
+          errorData.details.forEach((item) => {
+            toast.error(
+              `${item.product_name} is already sold out!`
+            );
+          });
+        } else if (errorData.error === "Cart is empty") {
+          toast.error("Your cart is empty.");
+        } else {
+          toast.error("Failed to place order. Please try again.");
+        }
+      } else {
+        toast.error("Server error. Please try again later.");
+      }
     }
   };
 
