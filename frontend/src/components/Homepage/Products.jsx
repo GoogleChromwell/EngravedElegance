@@ -19,14 +19,15 @@ export default function Products() {
   return (
     <div className="p-[10px] flex flex-col gap-4 justify-center items-center">
       <div className="flex gap-4">
-        {products.map((product, index) => (
-          <ProductCard 
-          key={{index}}
-          productID={product["product_id"]}
-          name={product["product_name"]}
-          description={product["product_description"]}
-          price={product.price}
-          quantity={product.quantity}/>
+        {products.map((product) => (
+          <ProductCard
+            key={product.product_id}
+            productID={product.product_id}
+            name={product.product_name}
+            description={product.product_description}
+            price={product.price}
+            quantity={product.quantity}
+          />
         ))}
       </div>
     </div>

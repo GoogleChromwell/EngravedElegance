@@ -1,7 +1,6 @@
-// components/ModalWrapper.jsx
 import React from 'react';
 
-export default function AuthModal({ isOpen, onClose, children }) {
+export default function AuthModalWrapper({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
@@ -9,7 +8,7 @@ export default function AuthModal({ isOpen, onClose, children }) {
       <div className="bg-white border border-primary-dark border-opacity-50  p-2 rounded-lg shadow-sm w-fit h-fit relative">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-xl font-bold text-gray-500 hover:text-black"
+          className="absolute top-2 right-2 text-xl font-bold text-gray-500 hover:text-black z-50"
         >
           ×
         </button>

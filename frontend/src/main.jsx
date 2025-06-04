@@ -1,4 +1,3 @@
-// main.jsx
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
@@ -9,10 +8,10 @@ import Dashboard from "./pages/Dashboard.jsx";
 import NotFoundError from "./components/RouterErrors/NotFoundError.jsx";
 import Register from "./components/Authentication/Register.jsx";
 import Cart from "./pages/Cart.jsx";
-import Customer from "./pages/Customer.jsx";
 import Staff from "./pages/Staff.jsx";
 import { UserProvider } from "./components/Authentication/UserContext.jsx";
-
+import ProtectedRoute from "./components/Authentication/ProtectedRoute.jsx";
+import EditFunction from "./components/Tables/EditFunction.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,21 +19,41 @@ const router = createBrowserRouter([
     element: <HomePage />,
     errorElement: <NotFoundError />,
   },
+    {
+    path: "/Edit",
+    element: <EditFunction/>,
+  },
   {
     path: "/Dashboard",
-    element: <Dashboard />,
+    element: (
+      <ProtectedRoute allowedRoles={["admin"]}>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/Cart",
-    element: <Cart />,
+    element:(
+      <ProtectedRoute allowedRoles={["staff"]}>
+        <Cart/>
+      </ProtectedRoute>
+    ),
   },
   {
-    path: "/Customer",
-    element: <Customer />,
+    path: "/Register",
+    element:(
+      <ProtectedRoute allowedRoles={["admin"]}>
+        <Register/>
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/Staff",
-    element: <Staff />,
+    element: (
+      <ProtectedRoute allowedRoles={["admin"]}>
+        <Staff />
+      </ProtectedRoute>
+    ),
   },
 ]);
 

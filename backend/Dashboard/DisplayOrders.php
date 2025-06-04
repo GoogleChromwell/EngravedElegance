@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $stmt = $pdo->query($query);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Group items by order_id
         $orders = [];
         foreach ($results as $row) {
             $orderId = $row['order_id'];

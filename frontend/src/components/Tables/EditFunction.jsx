@@ -1,25 +1,44 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import * as Yup from "yup";
 import axios from "axios";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-export default function Register({ onBackToLogin }) {
+export default function EditFunction({ staffToEdit }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [staffData, setStaffData] = useState(null);
+
+  useEffect(() => {
+    const fetchStaff = async () => {
+      if (staffToEdit?.id) {
+        try {
+          const response = await axios.get(
+            `http://localhost/Engraved-Clone/EngravedElegance/backend/Staff/GetUser.php?id=${staffToEdit.id}`
+          );
+          setStaffData(response.data);
+        } catch (error) {
+          console.error("Failed to fetch staff details:", error);
+          toast.error("Failed to load staff data");
+        }
+      }
+    };
+
+    fetchStaff();
+  }, [staffToEdit]);
 
   const initialValues = {
-    email: "",
-    password: "",
+    email: staffData?.email || "",
+    password: staffData?.password || "",
     confirmPassword: "",
-    first_name: "",
-    last_name: "",
-    middle_initial: "",
-    address: "",
-    contact_number: "",
-    monthly_salary: "",
+    first_name: staffData?.first_name || "",
+    last_name: staffData?.last_name || "",
+    middle_initial: staffData?.middle_initial || "",
+    address: staffData?.address || "",
+    contact_number: staffData?.contact_number || "",
+    monthly_salary: staffData?.monthly_salary || "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -27,9 +46,6 @@ export default function Register({ onBackToLogin }) {
       .required("*Email is required")
       .email('*Email must contain "@"'),
     password: Yup.string().required("*Password is required"),
-    confirmPassword: Yup.string()
-      .required("*Confirm Password is required")
-      .oneOf([Yup.ref("password"), null], "*Password doesn't match"),
     first_name: Yup.string().required("*First name is required"),
     last_name: Yup.string().required("*Last name is required"),
     middle_initial: Yup.string().required("*Middle initial is required"),
@@ -41,48 +57,55 @@ export default function Register({ onBackToLogin }) {
   });
 
   const onSubmit = async (values, { resetForm }) => {
+    const payload = { ...values, role: "staff" };
+
     try {
-      const payload = {
-        ...values,
-        role: "staff",
-      };
+      if (staffToEdit?.id) {
+        await axios.put(
+          `http://localhost/Engraved-Clone/EngravedElegance/backend/Staff/UpdateUser.php`,
+          { ...payload, id: staffToEdit.id },
+          { headers: { "Content-Type": "application/json" } }
+        );
+        toast.success("Staff updated successfully!");
+      } else {
+        await axios.post(
+          "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Registration.php",
+          payload,
+          { headers: { "Content-Type": "application/json" } }
+        );
+        toast.success("Staff registered successfully!");
+      }
 
-      const response = await axios.post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Registration.php",
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      console.log("Registration Success: ", response.data);
-      toast.success("Registration Success!");
-
+      resetForm();
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
-      resetForm();
+      }, 1500);
     } catch (error) {
-      console.error("Error: ", error.response?.data || error.message);
-      toast.error("Registration Failed");
+      console.log("Submitting form with values:", values);
+      console.error("Error:", error.response?.data || error.message);
+      toast.error("Operation failed");
     }
   };
+
+  if (staffToEdit?.id && !staffData) {
+    return <div className="p-5">Loading staff data...</div>;
+  }
 
   return (
     <div className="w-full h-full">
       <ToastContainer />
       <div className="w-fit h-auto justify-center items-center p-5 rounded-[5px]">
-        <h1 className="text-center font-bold text-[18px] pb-5">Register Staff</h1>
+        <h1 className="text-center font-bold text-[18px] pb-5">
+          {staffToEdit ? "Edit Staff" : "Add New Staff"}
+        </h1>
 
         <Formik
+          enableReinitialize
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
           <Form className="grid grid-cols-2 gap-5">
-
             <div className="col-span-2">
               <Field
                 name="email"
@@ -118,33 +141,6 @@ export default function Register({ onBackToLogin }) {
               </div>
               <ErrorMessage
                 name="password"
-                component="div"
-                className="text-red-500 text-[14px]"
-              />
-            </div>
-
-            <div>
-              <div className="relative">
-                <Field
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  className="w-full border border-gray-500 p-2 rounded-[5px] pr-10 text-[14px] font-medium"
-                />
-                <button
-                  type="button"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
-                  onClick={() => setShowConfirmPassword((prev) => !prev)}
-                >
-                  {showConfirmPassword ? (
-                    <RemoveRedEyeOutlinedIcon style={{ fontSize: "20px" }} />
-                  ) : (
-                    <VisibilityOffOutlinedIcon style={{ fontSize: "20px" }} />
-                  )}
-                </button>
-              </div>
-              <ErrorMessage
-                name="confirmPassword"
                 component="div"
                 className="text-red-500 text-[14px]"
               />
@@ -229,11 +225,12 @@ export default function Register({ onBackToLogin }) {
             </div>
 
             <div className="space-y-3 col-span-2">
-              <input
+              <button
                 type="submit"
-                value="Add staff"
-                className=" bg-primary-dark text-white font-medium text-[14px] w-full rounded-[5px] h-[42px] active:bg-primary-dark active:bg-opacity-50"
-              />
+                className="bg-primary-dark text-white font-medium text-[14px] w-full rounded-[5px] h-[42px] active:bg-opacity-50"
+              >
+                {staffToEdit ? "Update Staff" : "Add Staff"}
+              </button>
             </div>
           </Form>
         </Formik>

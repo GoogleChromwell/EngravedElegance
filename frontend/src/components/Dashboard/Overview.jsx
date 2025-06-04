@@ -30,7 +30,7 @@ export default function Overview() {
   );
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
-    return date.toISOString().split("T")[0]; // Ensures yyyy-mm-dd
+    return date.toISOString().split("T")[0]; 
   };
 
   useEffect(() => {

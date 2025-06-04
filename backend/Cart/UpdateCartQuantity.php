@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
     try {
         require_once "../connection.inc.php";
 
-        // Get raw JSON input
         $data = json_decode(file_get_contents("php://input"), true);
 
         $cartId = $data['cart_id'] ?? null;

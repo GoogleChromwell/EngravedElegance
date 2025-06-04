@@ -11,7 +11,7 @@ export default function CartPage() {
         "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/DisplayCart.php"
       )
       .then((res) => {
-        console.log("Fetched cart items:", res.data); // should now be an array
+        console.log("Fetched cart items:", res.data);
         setCartItems(res.data);
       })
       .catch((err) => console.error("Error fetching cart:", err));

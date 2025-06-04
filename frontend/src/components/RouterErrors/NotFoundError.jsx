@@ -15,10 +15,6 @@ export default function NotFoundError() {
                 </div>
                 
             </div>
-            
-            
-            
-           
         </div>
     </div>
   )

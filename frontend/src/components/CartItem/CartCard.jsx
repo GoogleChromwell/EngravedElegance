@@ -47,7 +47,7 @@ export default function CartCard({ cart_id, product_name, product_description, q
         }
       )
       .then((res) => {
-        window.location.reload(); // ⬅ reload the page after successful update
+        window.location.reload();
       })
       .catch((err) => {
         console.error("Update failed", err);
@@ -67,7 +67,7 @@ export default function CartCard({ cart_id, product_name, product_description, q
           }
         )
         .then((res) => {
-          window.location.reload(); // ⬅ reload here too
+          window.location.reload();
         })
         .catch((err) => {
           console.error("Update failed", err);

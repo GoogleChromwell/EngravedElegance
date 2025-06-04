@@ -30,14 +30,16 @@ export default function Login({ onSignupClick, closeModal }) {
 
       console.log("Login Response:", response.data);
 
-      if (response.data.username) {
+      if (response.data.email) {
         login({
-          username: response.data.username,
+          email: response.data.email,
+          first_name: response.data.first_name,
+          last_name: response.data.last_name,
           role: response.data.role,
         });
 
         if (typeof closeModal === "function") {
-          toast.success("Log in success");
+          toast.success("Login successful!");
           closeModal();
         }
       } else {
@@ -45,7 +47,6 @@ export default function Login({ onSignupClick, closeModal }) {
       }
     } catch (error) {
       console.error("Login error:", error);
-
       if (error.response) {
         alert("Login failed: " + (error.response.data.error || "Server error"));
       } else {
@@ -57,17 +58,16 @@ export default function Login({ onSignupClick, closeModal }) {
   return (
     <form
       onSubmit={handleLogin}
-      className="flex flex-col gap-5 p-8 w-[300px] relative"
+      className="flex flex-col gap-5 p-7 w-[300px] relative"
     >
-      <ToastContainer />
       <h2 className="text-[18px] font-semibold text-center">Login</h2>
-
+      <ToastContainer />
       <input
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder="Email"
-        className="text-[14px] p-2 border border-primary-dark border-opacity-30 rounded focus:outline-none focus:ring-2 focus:ring-primary-dark"
+        className="text-[14px] p-2 border border-primary-dark border-opacity-30 rounded-custom-xs"
         required
       />
 
@@ -77,7 +77,7 @@ export default function Login({ onSignupClick, closeModal }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="text-[14px] p-2 w-full border border-primary-dark border-opacity-30 rounded focus:outline-none focus:ring-2 focus:ring-primary-dark pr-10"
+          className="text-[14px] p-2 w-full border border-primary-dark border-opacity-30 rounded-custom-xs"
           required
         />
         <button
@@ -99,17 +99,6 @@ export default function Login({ onSignupClick, closeModal }) {
       >
         Login
       </button>
-
-      <div className="flex items-center justify-center gap-1 text-[12px]">
-        <p>Don't have an account?</p>
-        <button
-          type="button"
-          onClick={onSignupClick}
-          className="text-blue-600 hover:underline"
-        >
-          Register
-        </button>
-      </div>
     </form>
   );
 }

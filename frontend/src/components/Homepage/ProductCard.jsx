@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ProtectedRoute from "../Authentication/ProtectedRoute";
 export default function ProductCard({
   productID,
   name,
@@ -56,18 +57,19 @@ export default function ProductCard({
             <p className="text-[10px] font-semibold">{quantity} items</p>
           </div>
         </div>
-
-        <button
-          onClick={addToCart}
-          className={`text-[12px] font-medium p-[6px] rounded-custom-xs ${
-            quantity < 1
-              ? "bg-primary-dark bg-opacity-70 text-white"
-              : "bg-primary-dark text-white"
-          }`}
-          disabled={quantity < 1}
-        >
-          {cartButton}
-        </button>
+        <ProtectedRoute allowedRoles={"staff"}>
+          <button
+            onClick={addToCart}
+            className={`text-[12px] font-medium p-[6px] rounded-custom-xs ${
+              quantity < 1
+                ? "bg-primary-dark bg-opacity-70 text-white"
+                : "bg-primary-dark text-white"
+            }`}
+            disabled={quantity < 1}
+          >
+            {cartButton}
+          </button>
+        </ProtectedRoute>
       </div>
     </div>
   );

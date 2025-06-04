@@ -8,9 +8,10 @@ header("Content-Type: application/json");
 if (isset($_SESSION["user"])) {
     echo json_encode([
         "loggedIn" => true,
-        "username" => $_SESSION["user"]["username"],
         "email" => $_SESSION["user"]["email"],
-        "role" => $_SESSION["user"]["role"]
+        "role" => $_SESSION["user"]["role"],
+        "first_name" => $_SESSION["user"]["first_name"],
+        "last_name" => $_SESSION["user"]["last_name"],
     ]);
 } else {
     echo json_encode(["loggedIn" => false]);

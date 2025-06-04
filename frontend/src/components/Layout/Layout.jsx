@@ -1,4 +1,3 @@
-// Layout.jsx
 import React, { useState } from "react";
 import Sidebar from "../Navigation/Sidebar";
 import HeaderBar from "../Tables/HeaderBar";
@@ -28,7 +27,6 @@ export default function Layout({ children }) {
         <main className="flex-1">{children}</main>
       </div>
 
-      {/* Login Modal */}
       <AuthModal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)}>
         <Login
           closeModal={() => setLoginOpen(false)}
@@ -36,7 +34,6 @@ export default function Layout({ children }) {
         />
       </AuthModal>
 
-      {/* Register Modal */}
       <AuthModal isOpen={isRegisterOpen} onClose={() => setRegisterOpen(false)}>
         <Register onBackToLogin={openLogin} />
       </AuthModal>

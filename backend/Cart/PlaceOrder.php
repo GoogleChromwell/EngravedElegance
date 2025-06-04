@@ -36,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
         }
 
-        // ✅ Check for insufficient stock
         $insufficientStockItems = [];
 
         foreach ($cartItems as $item) {
@@ -59,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
         }
 
-        // ✅ Proceed to place order
         $total_price = 0;
         foreach ($cartItems as $item) {
             $total_price += $item['cart_quantity'] * $item['price'];

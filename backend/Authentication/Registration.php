@@ -14,38 +14,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input = file_get_contents("php://input");
     $data = json_decode($input, true);
 
-    if (isset($data["username"], $data["email"], $data["password"], $data['role'])) {
-        $role = $data["role"];
-        $username = $data["username"];
+    if (isset($data["email"], $data["password"], $data['last_name'], $data['first_name'], $data['middle_initial'], $data['address'], $data['contact_number'], $data['monthly_salary'], $data['role'], )) {
         $email = $data["email"];
         $password = password_hash($data["password"], PASSWORD_DEFAULT);
+        $lastName = $data["last_name"];
+        $firstName = $data["first_name"];
+        $middleInitial = $data["middle_initial"];
+        $address = $data["address"];
+        $contactNumber = $data["contact_number"];
+        $monthlySalary = $data["monthly_salary"];
+        $role = $data["role"];
 
 
         try {
             require_once "../connection.inc.php";
-
-            // Check if email already exists
             $checkQuery = "SELECT * FROM users WHERE email = :email";
             $checkStmt = $pdo->prepare($checkQuery);
             $checkStmt->execute([":email" => $email]);
 
             if ($checkStmt->rowCount() > 0) {
-                http_response_code(409); // Conflict
+                http_response_code(409); 
                 echo json_encode(["error" => "Email already in use"]);
                 exit();
             }
 
-            // Insert user
-            $query = "INSERT INTO users(username, email, password, role) 
-                      VALUES (:username, :email, :password, :role)";
+            $query = "INSERT INTO users(email, password, last_name, first_name, middle_initial, address, contact_number, monthly_salary, role) 
+                      VALUES (:email, :password, :last_name, :first_name, :middle_initial, :address, :contact_number, :monthly_salary, :role)";
             $stmt = $pdo->prepare($query);
             $stmt->execute([
-                ":username" => $username,
                 ":email" => $email,
                 ":password" => $password,
+                ":last_name" => $lastName,
+                ":first_name" => $firstName,
+                ":middle_initial" => $middleInitial,
+                ":address" => $address,
+                ":contact_number" => $contactNumber,
+                ":monthly_salary" => $monthlySalary,
                 ":role" => $role,
             ]);
-
             echo json_encode(["message" => "User registered successfully"]);
 
         } catch (PDOException $e) {

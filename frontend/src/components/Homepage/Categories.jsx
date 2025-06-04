@@ -18,7 +18,6 @@ export default function Categories() {
         <div className="flex place-items-center gap-2 w-full max-w-md">
           <Formik initialValues={initialValues} onSubmit={onSubmit}>
             <Form className="w-full">
-              {/* Input wrapper with icon */}
               <div className="relative w-full">
                 <SearchIcon
                   className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
@@ -35,7 +34,6 @@ export default function Categories() {
             </Form>
           </Formik>
 
-          {/* Filter icon box */}
           <button
             className="
             shadow border border-primary-dark border-opacity-20 h-full w-9 

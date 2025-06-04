@@ -30,9 +30,8 @@ export default function CartSummary() {
         toast.success("Order Placed!");
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 1000);
       } else {
-        // Generic error fallback
         toast.error("Something went wrong while placing the order.");
       }
 
@@ -44,7 +43,6 @@ export default function CartSummary() {
       if (error.response && error.response.data) {
         const errorData = error.response.data;
 
-        // Check for specific insufficient stock error
         if (
           errorData.error === "Insufficient stock for some products" &&
           Array.isArray(errorData.details)
