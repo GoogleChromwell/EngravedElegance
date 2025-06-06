@@ -40,12 +40,14 @@ const Chart = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white flex justify-star text-[12px]">
+    <div className="w-full bg-white flex justify-start 
+    custom-tablet:text-[12px]
+    custom-mobileSmall:text-[10px]">
       <div className="h-44 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data}
-            margin={{ top: 10, right: 0, left: 30, bottom: 0 }}
+            margin={{ top: 10, right: 0, left: 10, bottom: 0 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />

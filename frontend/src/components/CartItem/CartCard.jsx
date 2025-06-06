@@ -84,8 +84,14 @@ export default function CartCard({ cart_id, product_name, product_description, q
   };
 
   return (
-    <div className="flex gap-7 rounded-custom-xs text-primary-dark bg-white border border-primary-dark border-opacity-30 w-full p-3">
-      <div className="w-[45%] h-full border border-primary-dark border-opacity-30"></div>
+    <div className="gap-7 rounded-custom-xs text-primary-dark bg-white border border-primary-dark border-opacity-30 w-full p-3
+    custom-tablet:flex
+    custom-mobileSmall:grid custom-mobileSmall:grid-cols-1">
+      <div className=" border border-primary-dark border-opacity-30
+      custom-tablet:w-64 custom-tablet:h-36
+      custom-mobileSmall:size-full custom-mobileSmall:h-36">
+        
+      </div>
 
       <div className="flex flex-col justify-between w-full rounded-custom-xs gap-4">
         <div className="flex flex-col gap-3">

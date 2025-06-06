@@ -73,7 +73,7 @@ export default function Register({ onBackToLogin }) {
   return (
     <div className="w-full h-full">
       <ToastContainer />
-      <div className="w-fit h-auto justify-center items-center p-5 rounded-[5px]">
+      <div className="w-full h-auto justify-center items-center p-5 rounded-[5px]">
         <h1 className="text-center font-bold text-[18px] pb-5">Register Staff</h1>
 
         <Formik

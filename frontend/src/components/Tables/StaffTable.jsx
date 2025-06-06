@@ -3,6 +3,7 @@ import axios from "axios";
 import Register from "../Authentication/Register";
 import EditFunction from "./EditFunction";
 import AuthModalWrapper from "../Modal/AuthModalWrapper";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 export default function StaffTable() {
   const [users, setUsers] = useState([]);
@@ -36,16 +37,42 @@ export default function StaffTable() {
     setIsModalOpen(true);
   };
 
-  return (
-    <div className="flex flex-col overflow-auto flex-grow gap-2 p-6 text-primary-dark">
-      <h1 className="font-bold font-poppins text-[16px]">Staff List</h1>
+  const deleteUser = (id) => {
+    if (!window.confirm("Are you sure you want to delete this user?")) return;
 
-      <button
-        className="flex justify-end bg-primary-dark text-white size-fit p-2 text-[12px] font-medium rounded-custom-xs place-self-end"
-        onClick={handleAddUserClick}
-      >
-        Add User
-      </button>
+    axios
+      .put(
+        "http://localhost/Engraved-Clone/EngravedElegance/backend/Staff/DeleteUser.php",
+        { id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => {
+        alert("User deleted successfully");
+        fetchStaff();
+      })
+      .catch((err) => {
+        console.error("Delete user error:", err);
+        alert("Failed to delete user");
+      });
+  };
+
+  return (
+    <div className="flex flex-col w-full h-full p-4 text-primary-dark">
+      <div className="flex justify-between items-center mb-5">
+        <h1 className="font-bold custom-tablet:text-[16px] custom-mobileSmall:text-[14px]">
+          Staff List
+        </h1>
+        <button
+          className="bg-primary-dark text-white text-xs px-4 py-2 rounded-custom-xs"
+          onClick={handleAddUserClick}
+        >
+          Add Staff
+        </button>
+      </div>
 
       <AuthModalWrapper
         isOpen={isModalOpen}
@@ -61,48 +88,60 @@ export default function StaffTable() {
         )}
       </AuthModalWrapper>
 
-      <table className="table-auto h-full text-center min-h-full font-poppins border border-primary-dark border-opacity-30">
-        <thead className="bg-primary-dark font-poppins text-white font-semibold text-[12px]">
-          <tr>
-            <th className="px-3 py-2">ID</th>
-            <th>Email</th>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Middle I.</th>
-            <th>Address</th>
-            <th>Contact No.</th>
-            <th>Monthly Salary</th>
-            <th>Role</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody className="text-[12px]">
-          {users.map((user) => (
-            <tr
-              key={user.id}
-              className="border-t border-primary-dark border-opacity-30"
-            >
-              <td className="px-3 py-3">{user.id}</td>
-              <td className="px-3 py-3">{user.email}</td>
-              <td className="px-3 py-3">{user.last_name}</td>
-              <td className="px-3 py-3">{user.first_name}</td>
-              <td className="px-3 py-3">{user.middle_initial}</td>
-              <td className="px-3 py-3">{user.address}</td>
-              <td className="px-3 py-3">{user.contact_number}</td>
-              <td className="px-3 py-3">₱{user.monthly_salary}</td>
-              <td className="px-3 py-3">{user.role}</td>
-              <td className="px-4">
-                <button
-                  className="bg-primary-dark w-full text-white text-xs px-2 py-1 rounded"
-                  onClick={() => handleEditClick(user)}
-                >
-                  Edit
-                </button>
-              </td>
+      <div
+        className="overflow-x-auto 
+      custom-tablet:max-w-full 
+      custom-mobileSmall:max-w-[410px] "
+      >
+        <table className="table-auto text-left font-poppins w-full">
+          <thead className="bg-primary-dark text-white font-semibold text-[12px]">
+            <tr>
+              <th className="px-3 py-2">ID</th>
+              <th className="px-3 py-2">Email & Role</th>
+              <th className="px-3 py-2">Name & Contact No.</th>
+              <th className="px-3 py-2">Address</th>
+              <th className="px-3 py-2">Monthly Salary</th>
+              <th className="px-3 py-2 text-center">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="text-[12px]">
+            {users.map((user) => (
+              <tr
+                key={user.id}
+                className="border-t border-primary-dark border-opacity-30 text-left"
+              >
+                <td className="px-3 py-3">{user.id}</td>
+                <td className="px-3 py-3">
+                  {user.email} <br />
+                  {user.role}
+                </td>
+                <td className="px-3 py-3">
+                  {user.first_name} {user.middle_initial}. {user.last_name}{" "}
+                  <br />
+                  {user.contact_number}
+                </td>
+                <td className="px-3 py-3">{user.address}</td>
+                <td className="px-3 py-3">₱{user.monthly_salary}</td>
+                <td className="flex gap-1 px-3 py-3 text-center items-center">
+                  <button
+                    className="bg-primary-dark text-white text-xs px-2 py-1 rounded w-full"
+                    onClick={() => handleEditClick(user)}
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    className="bg-red-600 text-white text-xs px-2 py-1 rounded w-full"
+                    onClick={() => deleteUser(user.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

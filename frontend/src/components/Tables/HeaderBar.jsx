@@ -45,9 +45,15 @@ export default function HeaderBar({ onLoginClick }) {
         ) : (
           <button
             onClick={handleLogout}
-            className="flex justify-between w-20 items-center text-[12px] font-semibold bg-primary-dark text-white rounded-custom-xs p-2 size-fit"
+            className="flex justify-between  items-center text-[12px] font-semibold bg-primary-dark text-white rounded-custom-xs p-2 size-fit
+            custom-mobileSmall:w-fit
+            custom-mobileMedium:w-20"
           >
-            Logout
+            <span 
+            className="custom-mobileSmall:hidden
+                      custom-mobileMedium:block">
+              Logout
+            </span>
             <LogoutIcon style={{ fontSize: "16px" }} />
           </button>
         )}

@@ -58,7 +58,7 @@ export default function Login({ onSignupClick, closeModal }) {
   return (
     <form
       onSubmit={handleLogin}
-      className="flex flex-col gap-5 p-7 w-[300px] relative"
+      className="flex flex-col gap-5 p-7 w-full relative"
     >
       <h2 className="text-[18px] font-semibold text-center">Login</h2>
       <ToastContainer />

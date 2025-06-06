@@ -19,6 +19,15 @@ module.exports = {
       borderRadius: {
         'custom-xs': '3px',
       },
+      screens:{
+        'custom-mobileSmall': '320px',
+        'custom-mobileMedium': '375px',
+        'custom-mobileLarge': '425px',
+        'custom-tablet': '768px',
+        'custom-laptop': '1024px',
+        'custom-laptopLarge': '1440px',
+        'custom-maxScreen': '2560px',
+      },
     },
   },
   plugins: [],

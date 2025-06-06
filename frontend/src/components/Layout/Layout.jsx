@@ -20,9 +20,9 @@ export default function Layout({ children }) {
   };
 
   return (
-    <div className="flex bg-primary-light min-h-screen">
+    <div className="flex bg-primary-light max-w-full h-full">
       <Sidebar />
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 max-w-full h-full">
         <HeaderBar onLoginClick={openLogin} />
         <main className="flex-1">{children}</main>
       </div>

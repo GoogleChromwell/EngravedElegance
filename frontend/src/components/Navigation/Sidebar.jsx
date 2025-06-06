@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import { UserContext } from "../Authentication/UserContext"; 
+import { UserContext } from "../Authentication/UserContext";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -33,18 +33,29 @@ export default function Sidebar() {
      ${isActive ? "bg-custom-gray bg-opacity-30" : "bg-opacity-0"}`;
 
   return (
-    <div className="flex flex-col bg-primary-dark w-fit h-screen p-[10px] gap-[16px] sticky top-0">
+    <div className="flex flex-col bg-primary-dark w-fit h-full min-h-screen p-[10px] gap-[16px] sticky top-0">
       <div className="flex place-items-center gap-2">
         <img src="../public/revised.png" alt="logo" className="size-[32px]" />
-        <h1 className="text-white font-poppins text-[12px] font-medium">
+        <h1
+          className="text-white font-poppins text-[12px] font-medium
+                  custom-mobileSmall:hidden
+                  custom-tablet:block"
+        >
           Engraved Elegance
         </h1>
       </div>
 
-      <div className="flex flex-col gap-[5px] place-items-center">
+      <div className="flex flex-col gap-[5px] place-items-center w-full">
         <NavLink to="/" className={({ isActive }) => navLinkStyle(isActive)}>
           <HomeOutlinedIcon style={{ fontSize: "24px" }} />
-          <span className="pt-0.5"> Home </span>
+          <span
+            className="pt-0.5
+                    custom-mobileSmall:hidden
+                    custom-tablet:block"
+          >
+            {" "}
+            Home{" "}
+          </span>
         </NavLink>
 
         {user.role === "admin" && (
@@ -54,14 +65,26 @@ export default function Sidebar() {
               className={({ isActive }) => navLinkStyle(isActive)}
             >
               <DashboardOutlinedIcon style={{ fontSize: "24px" }} />
-              <span className="pt-0.5"> Dashboard </span>
+              <span
+                className="pt-0.5
+                        custom-mobileSmall:hidden
+                        custom-tablet:block"
+              >
+                Dashboard
+              </span>
             </NavLink>
             <NavLink
               to="/Staff"
               className={({ isActive }) => navLinkStyle(isActive)}
             >
               <PersonOutlineOutlinedIcon style={{ fontSize: "24px" }} />
-              <span className="pt-0.5"> Staff </span>
+              <span
+                className="pt-0.5
+                        custom-mobileSmall:hidden
+                        custom-tablet:block"
+              >
+                Staff
+              </span>
             </NavLink>
           </>
         )}
@@ -71,13 +94,27 @@ export default function Sidebar() {
             to="/Cart"
             className={({ isActive }) => navLinkStyle(isActive)}
           >
-            <ShoppingCartOutlinedIcon style={{ fontSize: "24px" }} />
-            <div className="flex justify-between w-full">
-              <h1>Cart</h1>
-              <p className="bg-red-600 size-[19px] text-center text-[13px] rounded-full">
+            <div className="relative">
+              <ShoppingCartOutlinedIcon style={{ fontSize: "24px" }} />
+              <span
+                className="
+                absolute -top-2 -right-2
+                bg-red-600 text-white rounded-full 
+                flex items-center justify-center
+                custom-tablet:w-[18px] custom-tablet:h-[18px] custom-tablet:text-[11px]
+                custom-mobileSmall:w-[14px] custom-mobileSmall:h-[14px] custom-mobileSmall:text-[9px]"
+              >
                 {cartProducts}
-              </p>
+              </span>
             </div>
+
+            <span
+              className="pt-0.5
+              custom-mobileSmall:hidden
+              custom-tablet:block"
+            >
+              Cart
+            </span>
           </NavLink>
         )}
       </div>

@@ -4,7 +4,7 @@ export default function AuthModalWrapper({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-30 flex justify-center items-center ">
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-30 flex justify-center items-center p-5">
       <div className="bg-white border border-primary-dark border-opacity-50  p-2 rounded-lg shadow-sm w-fit h-fit relative">
         <button
           onClick={onClose}

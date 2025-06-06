@@ -18,7 +18,12 @@ export default function Products() {
   }, []);
   return (
     <div className="p-[10px] flex flex-col gap-4 justify-center items-center">
-      <div className="grid grid-cols-4 gap-6">
+      <div className="
+      grid  gap-6
+       custom-laptopLarge:grid-cols-5
+      custom-laptop:grid-cols-4
+      custom-tablet:grid-cols-2
+      custom-mobileSmall:grid-cols-1">
         {products.map((product) => (
           <ProductCard
             key={product.product_id}
