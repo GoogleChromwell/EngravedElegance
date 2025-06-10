@@ -39,15 +39,28 @@ export default function ProductCard({
   return (
     <div
       className="
-    w-52 p-[10px] bg-white border border-primary-dark border-opacity-30 flex flex-col
-    font-poppins justify-between"
+     p-[10px] bg-white border border-primary-dark border-opacity-30 flex flex-col
+    font-poppins justify-between
+    custom-tablet:w-52
+    custom-mobileSmall:w-[200px]"
+    
     >
       <div className="flex flex-col gap-2">
         <img src={`../public/Products/${image}`} className="border border-primary-dark border-opacity-20 w-full h-36 "></img>
 
         <div className="flex flex-col gap-1 mb-1 text-primary-dark">
-          <h2 className="text-[16px] font-bold">{name}</h2>
-          <p className="text-[12px] w-44">{description}</p>
+          <h2 
+            className="font-bold
+            custom-tablet:text-[16px] 
+            custom-mobileSmall:text-[14px]">
+          {name}
+          </h2>
+          <p 
+          className=" w-44
+          custom-tablet:text-[12px]
+          custom-mobileSmall:text-[10px]">
+            {description}
+          </p>
         </div>
       </div>
 
