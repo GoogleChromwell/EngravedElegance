@@ -3,7 +3,7 @@ import axios from "axios";
 import Register from "../Authentication/Register";
 import EditFunction from "./EditFunction";
 import AuthModalWrapper from "../Modal/AuthModalWrapper";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function StaffTable() {
   const [users, setUsers] = useState([]);
@@ -51,17 +51,17 @@ export default function StaffTable() {
         }
       )
       .then(() => {
-        alert("User deleted successfully");
+        toast.success("Staff information deleted")
         fetchStaff();
       })
       .catch((err) => {
-        console.error("Delete user error:", err);
-        alert("Failed to delete user");
+        toast.error("Failed to delete staff information")
       });
   };
 
   return (
     <div className="flex flex-col w-full h-full p-4 text-primary-dark">
+      <ToastContainer/>
       <div className="flex justify-between items-center mb-5">
         <h1 className="font-bold custom-tablet:text-[16px] custom-mobileSmall:text-[14px]">
           Staff List

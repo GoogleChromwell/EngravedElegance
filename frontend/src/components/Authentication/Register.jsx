@@ -34,7 +34,11 @@ export default function Register({ onBackToLogin }) {
     last_name: Yup.string().required("*Last name is required"),
     middle_initial: Yup.string().required("*Middle initial is required"),
     address: Yup.string().required("*Address is required"),
-    contact_number: Yup.string().required("*Contact number is required"),
+    contact_number: Yup.string()
+      .required("*Contact number is required")
+      .matches(/^\d+$/, "*Must be a number only")
+      .min(11, "*Must be at least 11 digits")
+      .max(11, "*Cannot exceed 11 digits"),
     monthly_salary: Yup.number()
       .typeError("*Monthly salary must be a number")
       .required("*Monthly salary is required"),
@@ -74,7 +78,9 @@ export default function Register({ onBackToLogin }) {
     <div className="w-full h-full">
       <ToastContainer />
       <div className="w-full h-auto justify-center items-center p-5 rounded-[5px]">
-        <h1 className="text-center font-bold text-[18px] pb-5">Register Staff</h1>
+        <h1 className="text-center font-bold text-[18px] pb-5">
+          Register Staff
+        </h1>
 
         <Formik
           initialValues={initialValues}
@@ -82,11 +88,10 @@ export default function Register({ onBackToLogin }) {
           onSubmit={onSubmit}
         >
           <Form className="grid grid-cols-2 gap-5">
-
-            <div className="col-span-2">
+            <div className="col-span-2 flex flex-col gap-1">
+              <h1 className="text-[14px] font-medium">Email</h1>
               <Field
                 name="email"
-                placeholder="Email"
                 className="w-full border border-gray-500 p-2 rounded-[5px] text-[14px] font-medium"
               />
               <ErrorMessage
@@ -97,16 +102,16 @@ export default function Register({ onBackToLogin }) {
             </div>
 
             <div>
-              <div className="relative">
+              <div className="relative flex flex-col gap-1">
+                <h1 className="text-[14px] font-medium">Password</h1>
                 <Field
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder="Password"
                   className="w-full border border-gray-500 p-2 rounded-[5px] pr-10 text-[14px] font-medium"
                 />
                 <button
                   type="button"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/5 text-gray-500"
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
                   {showPassword ? (
@@ -124,16 +129,16 @@ export default function Register({ onBackToLogin }) {
             </div>
 
             <div>
-              <div className="relative">
+              <div className="relative flex flex-col gap-1">
+                <h1 className="text-[14px] font-medium">Confirm Password</h1>
                 <Field
                   type={showConfirmPassword ? "text" : "password"}
                   name="confirmPassword"
-                  placeholder="Confirm Password"
                   className="w-full border border-gray-500 p-2 rounded-[5px] pr-10 text-[14px] font-medium"
                 />
                 <button
                   type="button"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/5 text-gray-500"
                   onClick={() => setShowConfirmPassword((prev) => !prev)}
                 >
                   {showConfirmPassword ? (
@@ -150,10 +155,10 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-[14px] font-medium">First name</h1>
               <Field
                 name="first_name"
-                placeholder="First Name"
                 className="w-full border border-gray-500 p-2 rounded-[5px] text-[14px] font-medium"
               />
               <ErrorMessage
@@ -163,10 +168,10 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-[14px] font-medium">Last name</h1>
               <Field
                 name="last_name"
-                placeholder="Last Name"
                 className="w-full border border-gray-500 p-2 rounded-[5px] text-[14px] font-medium"
               />
               <ErrorMessage
@@ -176,10 +181,10 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-[14px] font-medium">Middle Initial</h1>
               <Field
                 name="middle_initial"
-                placeholder="Middle Initial"
                 className="w-full border border-gray-500 p-2 rounded-[5px] text-[14px] font-medium"
               />
               <ErrorMessage
@@ -189,10 +194,10 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-[14px] font-medium">Address</h1>
               <Field
                 name="address"
-                placeholder="Address"
                 className="w-full border border-gray-500 p-2 rounded-[5px] text-[14px] font-medium"
               />
               <ErrorMessage
@@ -202,10 +207,10 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-[14px] font-medium">Contact Number</h1>
               <Field
                 name="contact_number"
-                placeholder="Contact Number"
                 className="w-full border border-gray-500 p-2 rounded-[5px] text-[14px] font-medium"
               />
               <ErrorMessage
@@ -215,10 +220,10 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-1">
+              <h1 className="text-[14px] font-medium">Monthly Salary</h1>
               <Field
                 name="monthly_salary"
-                placeholder="Monthly Salary"
                 className="w-full border border-gray-500 p-2 rounded-[5px] text-[14px] font-medium"
               />
               <ErrorMessage

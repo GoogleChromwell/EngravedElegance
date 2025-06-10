@@ -28,6 +28,7 @@ export default function CartPage() {
             product_name={item.product_name}
             price={item.price}
             quantity={item.cart_quantity}
+            image={item.image}
           /> 
         ))
       ) : (

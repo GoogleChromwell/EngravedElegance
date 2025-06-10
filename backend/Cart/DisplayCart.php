@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             products.product_name,
             products.product_description,    
             products.price,
+            products.image,
             products.quantity         AS stock_quantity      -- alias
           FROM carts
           JOIN products ON carts.product_id = products.product_id

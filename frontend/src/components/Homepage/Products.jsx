@@ -21,7 +21,7 @@ export default function Products() {
       <div className="
       grid  gap-6
        custom-laptopLarge:grid-cols-5
-      custom-laptop:grid-cols-4
+      custom-laptop:grid-cols-3
       custom-tablet:grid-cols-2
       custom-mobileSmall:grid-cols-1">
         {products.map((product) => (
@@ -32,6 +32,7 @@ export default function Products() {
             description={product.product_description}
             price={product.price}
             quantity={product.quantity}
+            image={product.image}
           />
         ))}
       </div>

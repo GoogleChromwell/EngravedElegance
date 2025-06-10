@@ -7,7 +7,7 @@ export default function Carts() {
     <Layout>
       <div
         className="
-      custom-laptop:flex gap-3 w-full p-5
+      custom-laptopMedium:flex gap-3 w-full p-5
       custom-mobileSmall:grid custom-mobileSmall:grid-cols-1"
       >
         <CartProducts />

@@ -7,6 +7,7 @@ export default function ProductCard({
   description,
   price,
   quantity,
+  image
 }) {
   const [cartButton, setCartButton] = useState("");
 
@@ -42,7 +43,7 @@ export default function ProductCard({
     font-poppins justify-between"
     >
       <div className="flex flex-col gap-2">
-        <img src="../public/revised.png" className="border border-primary-dark border-opacity-20 w-full h-36 "></img>
+        <img src={`../public/Products/${image}`} className="border border-primary-dark border-opacity-20 w-full h-36 "></img>
 
         <div className="flex flex-col gap-1 mb-1 text-primary-dark">
           <h2 className="text-[16px] font-bold">{name}</h2>

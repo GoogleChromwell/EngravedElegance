@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import axios from "axios";
 
-export default function CartCard({ cart_id, product_name, product_description, quantity, price }) {
+export default function CartCard({ cart_id, product_name, product_description, quantity, price, image }) {
   const [cartQuantity, setQuantity] = useState(Number(quantity) || 1);
 
   const onDelete = () => {
@@ -84,23 +84,25 @@ export default function CartCard({ cart_id, product_name, product_description, q
   };
 
   return (
-    <div className="gap-7 rounded-custom-xs text-primary-dark bg-white border border-primary-dark border-opacity-30 w-full p-3
-    custom-tablet:flex
+    <div className="gap-3 rounded-custom-xs text-primary-dark bg-white border border-primary-dark border-opacity-30 w-full p-3
+    custom-tablet:flex 
     custom-mobileSmall:grid custom-mobileSmall:grid-cols-1">
-      <div className=" border border-primary-dark border-opacity-30
-      custom-tablet:w-64 custom-tablet:h-36
-      custom-mobileSmall:size-full custom-mobileSmall:h-36">
+      <img src={`../public/Products/${image}`} className=" border border-primary-dark border-opacity-30
+      custom-tablet:w-64 custom-tablet:h-full
+      custom-mobileSmall:size-full custom-mobileSmall:h-full">
         
-      </div>
+      </img>
 
       <div className="flex flex-col justify-between w-full rounded-custom-xs gap-4">
         <div className="flex flex-col gap-3">
-          <div className="flex justify-between text-[16px] font-bold">
+          <div 
+          className="flex justify-between font-bold text-[16px]">
             <h1>{product_name}</h1>
             <h1>₱{price}</h1>
           </div>
 
-          <div className="text-[12px] font-medium">
+          <div 
+          className="font-medium text-[12px]">
             <p>{product_description}</p>
           </div>
         </div>

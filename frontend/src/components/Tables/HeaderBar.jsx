@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { toast } from "react-toastify";
 import { UserContext } from "../Authentication/UserContext";

@@ -50,10 +50,15 @@ export default function EditFunction({ staffToEdit }) {
     last_name: Yup.string().required("*Last name is required"),
     middle_initial: Yup.string().required("*Middle initial is required"),
     address: Yup.string().required("*Address is required"),
-    contact_number: Yup.string().required("*Contact number is required"),
+    contact_number: Yup.string()
+      .required("*Contact number is required")
+      .matches(/^\d+$/, "*Must be a number only") 
+      .min(11, "*Must be at least 11 digits")
+      .max(11, "*Cannot exceed 11 digits"),
     monthly_salary: Yup.number()
       .typeError("*Monthly salary must be a number")
-      .required("*Monthly salary is required"),
+      .required("*Monthly salary is required")
+      .min(1, "*Must be greater than 1"),
   });
 
   const onSubmit = async (values, { resetForm }) => {
@@ -66,6 +71,7 @@ export default function EditFunction({ staffToEdit }) {
           { ...payload, id: staffToEdit.id },
           { headers: { "Content-Type": "application/json" } }
         );
+        resetForm();
         toast.success("Staff updated successfully!");
       } else {
         await axios.post(
@@ -73,16 +79,14 @@ export default function EditFunction({ staffToEdit }) {
           payload,
           { headers: { "Content-Type": "application/json" } }
         );
+        resetForm();
         toast.success("Staff registered successfully!");
       }
 
-      resetForm();
       setTimeout(() => {
         window.location.reload();
       }, 1500);
     } catch (error) {
-      console.log("Submitting form with values:", values);
-      console.error("Error:", error.response?.data || error.message);
       toast.error("Operation failed");
     }
   };
@@ -106,7 +110,9 @@ export default function EditFunction({ staffToEdit }) {
           onSubmit={onSubmit}
         >
           <Form className="grid grid-cols-2 gap-5">
+
             <div className="col-span-2">
+              <h1 className="text-[14px] font-medium">Email</h1>
               <Field
                 name="email"
                 placeholder="Email"
@@ -119,7 +125,7 @@ export default function EditFunction({ staffToEdit }) {
               />
             </div>
 
-            <div>
+            {/* <div>
               <div className="relative">
                 <Field
                   type={showPassword ? "text" : "password"}
@@ -144,9 +150,10 @@ export default function EditFunction({ staffToEdit }) {
                 component="div"
                 className="text-red-500 text-[14px]"
               />
-            </div>
+            </div> */}
 
             <div>
+              <h1 className="text-[14px] font-medium">First name</h1>
               <Field
                 name="first_name"
                 placeholder="First Name"
@@ -160,6 +167,7 @@ export default function EditFunction({ staffToEdit }) {
             </div>
 
             <div>
+              <h1 className="text-[14px] font-medium">Last name</h1>
               <Field
                 name="last_name"
                 placeholder="Last Name"
@@ -173,6 +181,7 @@ export default function EditFunction({ staffToEdit }) {
             </div>
 
             <div>
+              <h1 className="text-[14px] font-medium">Middle Initial</h1>
               <Field
                 name="middle_initial"
                 placeholder="Middle Initial"
@@ -186,6 +195,7 @@ export default function EditFunction({ staffToEdit }) {
             </div>
 
             <div>
+              <h1 className="text-[14px] font-medium">Address</h1>
               <Field
                 name="address"
                 placeholder="Address"
@@ -199,6 +209,7 @@ export default function EditFunction({ staffToEdit }) {
             </div>
 
             <div>
+              <h1 className="text-[14px] font-medium">Contact number</h1>
               <Field
                 name="contact_number"
                 placeholder="Contact Number"
@@ -212,6 +223,7 @@ export default function EditFunction({ staffToEdit }) {
             </div>
 
             <div>
+              <h1 className="text-[14px] font-medium">Monthly Salary</h1>
               <Field
                 name="monthly_salary"
                 placeholder="Monthly Salary"

@@ -25,6 +25,7 @@ module.exports = {
         'custom-mobileLarge': '425px',
         'custom-tablet': '768px',
         'custom-laptop': '1024px',
+        'custom-laptopMedium': '1333px',
         'custom-laptopLarge': '1440px',
         'custom-maxScreen': '2560px',
       },
