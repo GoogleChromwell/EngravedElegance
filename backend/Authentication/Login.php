@@ -46,7 +46,7 @@ $password = $data["password"];
 try {
     require_once "../connection.inc.php";
 
-    $stmt = $pdo->prepare("SELECT email, role, first_name, last_name, password FROM users WHERE email = :email");
+    $stmt = $pdo->prepare("SELECT email, role, first_name, last_name, password FROM users WHERE BINARY email = :email");
     $stmt->execute([":email" => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

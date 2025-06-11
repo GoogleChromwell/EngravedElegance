@@ -6,7 +6,7 @@ import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
 export default function Login({ onSignupClick, closeModal }) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useContext(UserContext);
@@ -17,7 +17,7 @@ export default function Login({ onSignupClick, closeModal }) {
       const response = await axios.post(
         "http://localhost/EngravedElegance/backend/Authentication/Login.php",
         {
-          email: username,
+          email,
           password,
         },
         {
@@ -64,8 +64,8 @@ export default function Login({ onSignupClick, closeModal }) {
       <ToastContainer />
       <input
         type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
         className="text-[14px] p-2 border border-primary-dark border-opacity-30 rounded-custom-xs"
         required
