@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
 
         $query = "UPDATE users 
                   SET email = :email,
-                      password = :password,
                       last_name = :last_name,
                       first_name = :first_name,
                       middle_initial = :middle_initial,
@@ -36,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
         $stmt = $pdo->prepare($query);
         $stmt->execute([
             ":email" => $data["email"],
-            ":password" => password_hash($data["password"], PASSWORD_DEFAULT),
             ":last_name" => $data["last_name"],
             ":first_name" => $data["first_name"],
             ":middle_initial" => $data["middle_initial"],

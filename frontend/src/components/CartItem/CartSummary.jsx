@@ -49,7 +49,7 @@ export default function CartSummary() {
         ) {
           errorData.details.forEach((item) => {
             toast.error(
-              `${item.product_name} is already sold out!`
+              `${item.product_name} insufficient stock`
             );
           });
         } else if (errorData.error === "Cart is empty") {

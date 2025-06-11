@@ -45,7 +45,6 @@ export default function EditFunction({ staffToEdit }) {
     email: Yup.string()
       .required("*Email is required")
       .email('*Email must contain "@"'),
-    password: Yup.string().required("*Password is required"),
     first_name: Yup.string().required("*First name is required"),
     last_name: Yup.string().required("*Last name is required"),
     middle_initial: Yup.string().required("*Middle initial is required").max(1, "1 Character only"),
@@ -124,33 +123,6 @@ export default function EditFunction({ staffToEdit }) {
                 className="text-red-500 text-[14px]"
               />
             </div>
-
-            {/* <div>
-              <div className="relative">
-                <Field
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="Password"
-                  className="w-full border border-gray-500 p-2 rounded-[5px] pr-10 text-[14px] font-medium"
-                />
-                <button
-                  type="button"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                >
-                  {showPassword ? (
-                    <RemoveRedEyeOutlinedIcon style={{ fontSize: "20px" }} />
-                  ) : (
-                    <VisibilityOffOutlinedIcon style={{ fontSize: "20px" }} />
-                  )}
-                </button>
-              </div>
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="text-red-500 text-[14px]"
-              />
-            </div> */}
 
             <div>
               <h1 className="text-[14px] font-medium">First name</h1>

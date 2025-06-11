@@ -31,8 +31,8 @@ export default function Register({ onBackToLogin }) {
       .required("*Confirm Password is required")
       .oneOf([Yup.ref("password"), null], "*Password doesn't match"),
     first_name: Yup.string().required("*First name is required"),
-    last_name: Yup.string().required("*Last name is required").max(1, "1 Character only"),
-    middle_initial: Yup.string().required("*Middle initial is required"),
+    last_name: Yup.string().required("*Last name is required"),
+    middle_initial: Yup.string().required("*Middle initial is required").max(1, "1 Character only"),
     address: Yup.string().required("*Address is required"),
     contact_number: Yup.string()
       .required("*Contact number is required")
@@ -41,7 +41,8 @@ export default function Register({ onBackToLogin }) {
       .max(11, "*Cannot exceed 11 digits"),
     monthly_salary: Yup.number()
       .typeError("*Monthly salary must be a number")
-      .required("*Monthly salary is required"),
+      .required("*Monthly salary is required")
+      .min(1, "*Must be greater than 1"),
   });
 
   const onSubmit = async (values, { resetForm }) => {
