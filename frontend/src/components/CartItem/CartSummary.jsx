@@ -20,7 +20,7 @@ export default function CartSummary() {
 
     try {
       const response = await axios.post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/PlaceOrder.php",
+        "http://localhost/EngravedElegance/backend/Cart/PlaceOrder.php",
         {
           customer_name: customerName,
         }
@@ -66,7 +66,7 @@ export default function CartSummary() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/CartTotal.php"
+        "http://localhost/EngravedElegance/backend/Cart/CartTotal.php"
       )
       .then((res) => {
         const total = parseFloat(res.data[0]?.total_cart_value) || 0;

@@ -16,7 +16,7 @@ export default function EditFunction({ staffToEdit }) {
       if (staffToEdit?.id) {
         try {
           const response = await axios.get(
-            `http://localhost/Engraved-Clone/EngravedElegance/backend/Staff/GetUser.php?id=${staffToEdit.id}`
+            `http://localhost/EngravedElegance/backend/Staff/GetUser.php?id=${staffToEdit.id}`
           );
           setStaffData(response.data);
         } catch (error) {

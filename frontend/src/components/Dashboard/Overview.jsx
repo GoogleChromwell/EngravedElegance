@@ -15,7 +15,7 @@ export default function Overview() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Dashboard/GetUsers.php"
+        "http://localhost/EngravedElegance/backend/Dashboard/GetUsers.php"
       )
       .then((response) => {
         setUsers(response.data.Users);
@@ -38,7 +38,7 @@ export default function Overview() {
 
     axios
       .get(
-        `http://localhost/Engraved-Clone/EngravedElegance/backend/Dashboard/Revenue.php?date=${formatted}`
+        `http://localhost/EngravedElegance/backend/Dashboard/Revenue.php?date=${formatted}`
       )
       .then((res) => {
         const data = res.data;

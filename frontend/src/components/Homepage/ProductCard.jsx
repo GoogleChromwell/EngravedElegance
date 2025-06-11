@@ -22,7 +22,7 @@ export default function ProductCard({
   const addToCart = async () => {
     try {
       await axios.post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/AddToCart.php",
+        "http://localhost/EngravedElegance/backend/Cart/AddToCart.php",
         {
           product_id: productID,
           quantity: 1,
@@ -46,7 +46,7 @@ export default function ProductCard({
     
     >
       <div className="flex flex-col gap-2">
-        <img src={`../public/Products/${image}`} className="border border-primary-dark border-opacity-20 w-full h-36 "></img>
+        <img src={`/Products/${image}`} className="border border-primary-dark border-opacity-20 w-full h-36 "></img>
 
         <div className="flex flex-col gap-1 mb-1 text-primary-dark">
           <h2 

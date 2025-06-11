@@ -10,7 +10,7 @@ export default function CartCard({ cart_id, product_name, product_description, q
   const onDelete = () => {
     axios
       .post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/DeleteCartProduct.php",
+        "http://localhost/EngravedElegance/backend/Cart/DeleteCartProduct.php",
         { cart_id: cart_id }, 
         { headers: { "Content-Type": "application/json" } }
       )
@@ -21,7 +21,7 @@ export default function CartCard({ cart_id, product_name, product_description, q
   const updateQuantity = (newQuantity) => {
     axios
       .put(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
+        "http://localhost/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
         {
           cart_id,
           quantity: newQuantity,
@@ -40,7 +40,7 @@ export default function CartCard({ cart_id, product_name, product_description, q
     const newQuantity = cartQuantity + 1;
     axios
       .put(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
+        "http://localhost/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
         {
           cart_id,
           quantity: newQuantity,
@@ -60,7 +60,7 @@ export default function CartCard({ cart_id, product_name, product_description, q
       const newQuantity = cartQuantity - 1;
       axios
         .put(
-          "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
+          "http://localhost/EngravedElegance/backend/Cart/UpdateCartQuantity.php",
           {
             cart_id,
             quantity: newQuantity,
@@ -87,7 +87,7 @@ export default function CartCard({ cart_id, product_name, product_description, q
     <div className="gap-3 rounded-custom-xs text-primary-dark bg-white border border-primary-dark border-opacity-30 w-full p-3
     custom-tablet:flex 
     custom-mobileSmall:grid custom-mobileSmall:grid-cols-1">
-      <img src={`../public/Products/${image}`} className=" border border-primary-dark border-opacity-30
+      <img src={`/Products/${image}`} className=" border border-primary-dark border-opacity-30
       custom-tablet:w-64 custom-tablet:h-full
       custom-mobileSmall:size-full custom-mobileSmall:h-full">
         

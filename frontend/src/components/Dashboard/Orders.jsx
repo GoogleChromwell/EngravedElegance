@@ -7,7 +7,7 @@ export default function Orders() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Dashboard/DisplayOrders.php"
+        "http://localhost/EngravedElegance/backend/Dashboard/DisplayOrders.php"
       )
       .then((res) => setOrders(res.data))
       .catch((err) => console.error("Error fetching orders:", err));

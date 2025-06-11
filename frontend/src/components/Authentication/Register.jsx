@@ -52,7 +52,7 @@ export default function Register({ onBackToLogin }) {
       };
 
       const response = await axios.post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Registration.php",
+        "http://localhost/EngravedElegance/backend/Authentication/Registration.php",
         payload,
         {
           headers: {

@@ -8,7 +8,7 @@ export default function CartPage() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/DisplayCart.php"
+        "http://localhost/EngravedElegance/backend/Cart/DisplayCart.php"
       )
       .then((res) => {
         console.log("Fetched cart items:", res.data);

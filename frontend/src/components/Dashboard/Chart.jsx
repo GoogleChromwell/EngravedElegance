@@ -17,11 +17,11 @@ const Chart = () => {
     const fetchData = () => {
       axios
         .get(
-          "http://localhost/Engraved-Clone/EngravedElegance/backend/Dashboard/Revenue.php"
+          "http://localhost/EngravedElegance/backend/Dashboard/Revenue.php"
         )
         .then(() =>
           axios.get(
-            "http://localhost/Engraved-Clone/EngravedElegance/backend/Dashboard/GetRevenueHistory.php"
+            "http://localhost/EngravedElegance/backend/Dashboard/GetRevenueHistory.php"
           )
         )
         .then((res) => {

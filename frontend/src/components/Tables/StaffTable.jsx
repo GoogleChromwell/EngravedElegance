@@ -17,7 +17,7 @@ export default function StaffTable() {
   const fetchStaff = () => {
     axios
       .get(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Staff/DisplayUsers.php"
+        "http://localhost/EngravedElegance/backend/Staff/DisplayUsers.php"
       )
       .then((response) => {
         setUsers(response.data);
@@ -42,7 +42,7 @@ export default function StaffTable() {
 
     axios
       .put(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Staff/DeleteUser.php",
+        "http://localhost/EngravedElegance/backend/Staff/DeleteUser.php",
         { id },
         {
           headers: {

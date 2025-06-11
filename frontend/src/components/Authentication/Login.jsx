@@ -15,7 +15,7 @@ export default function Login({ onSignupClick, closeModal }) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Login.php",
+        "http://localhost/EngravedElegance/backend/Authentication/Login.php",
         {
           email: username,
           password,

@@ -16,7 +16,7 @@ export default function Sidebar() {
     if (user.role === "staff") {
       axios
         .get(
-          "http://localhost/Engraved-Clone/EngravedElegance/backend/Cart/CountCart.php"
+          "http://localhost/EngravedElegance/backend/Cart/CountCart.php"
         )
         .then((response) => {
           setCartProducts(response.data.cart_count ?? 0);
@@ -35,7 +35,7 @@ export default function Sidebar() {
   return (
     <div className="flex flex-col bg-primary-dark w-fit h-full min-h-screen p-[10px] gap-[16px] sticky top-0">
       <div className="flex place-items-center gap-2">
-        <img src="../public/revised.png" alt="logo" className="size-[32px]" />
+        <img src="/public/Logo.png" alt="logo" className="size-[32px]" />
         <h1
           className="text-white font-poppins text-[12px] font-medium
                   custom-mobileSmall:hidden
@@ -53,8 +53,7 @@ export default function Sidebar() {
                     custom-mobileSmall:hidden
                     custom-tablet:block"
           >
-            {" "}
-            Home{" "}
+            Home
           </span>
         </NavLink>
 

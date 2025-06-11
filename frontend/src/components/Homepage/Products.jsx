@@ -7,7 +7,7 @@ export default function Products() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Products/DisplayProducts.php"
+        "http://localhost/EngravedElegance/backend/Products/DisplayProducts.php"
       )
       .then((response) => {
         setProducts(response.data);

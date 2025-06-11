@@ -16,7 +16,7 @@ export const UserProvider = ({ children }) => {
   const checkSession = async () => {
     try {
       const response = await axios.get(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/GetSessionData.php",
+        "http://localhost/EngravedElegance/backend/Authentication/GetSessionData.php",
         { withCredentials: true }
       );
       console.log("Session Response:", response.data);
@@ -52,7 +52,7 @@ export const UserProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.post(
-        "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Logout.php",
+        "http://localhost/EngravedElegance/backend/Authentication/Logout.php",
         {},
         { withCredentials: true }
       );
