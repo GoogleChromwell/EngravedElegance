@@ -31,7 +31,7 @@ export default function Register({ onBackToLogin }) {
       .required("*Confirm Password is required")
       .oneOf([Yup.ref("password"), null], "*Password doesn't match"),
     first_name: Yup.string().required("*First name is required"),
-    last_name: Yup.string().required("*Last name is required"),
+    last_name: Yup.string().required("*Last name is required").max(1, "1 Character only"),
     middle_initial: Yup.string().required("*Middle initial is required"),
     address: Yup.string().required("*Address is required"),
     contact_number: Yup.string()

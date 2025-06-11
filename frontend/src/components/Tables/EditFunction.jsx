@@ -48,7 +48,7 @@ export default function EditFunction({ staffToEdit }) {
     password: Yup.string().required("*Password is required"),
     first_name: Yup.string().required("*First name is required"),
     last_name: Yup.string().required("*Last name is required"),
-    middle_initial: Yup.string().required("*Middle initial is required"),
+    middle_initial: Yup.string().required("*Middle initial is required").max(1, "1 Character only"),
     address: Yup.string().required("*Address is required"),
     contact_number: Yup.string()
       .required("*Contact number is required")
@@ -67,7 +67,7 @@ export default function EditFunction({ staffToEdit }) {
     try {
       if (staffToEdit?.id) {
         await axios.put(
-          `http://localhost/Engraved-Clone/EngravedElegance/backend/Staff/UpdateUser.php`,
+          `http://localhost/EngravedElegance/backend/Staff/UpdateUser.php`,
           { ...payload, id: staffToEdit.id },
           { headers: { "Content-Type": "application/json" } }
         );
@@ -75,7 +75,7 @@ export default function EditFunction({ staffToEdit }) {
         toast.success("Staff updated successfully!");
       } else {
         await axios.post(
-          "http://localhost/Engraved-Clone/EngravedElegance/backend/Authentication/Registration.php",
+          "http://localhost/EngravedElegance/backend/Authentication/Registration.php",
           payload,
           { headers: { "Content-Type": "application/json" } }
         );
