@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     try {
         require_once "../connection.inc.php";
 
-        $query  = "SELECT COUNT(id) AS Users FROM users";
+        $query  = "SELECT COUNT(id) AS Users FROM users where role='staff'";
         $count  = $pdo->query($query)->fetch(PDO::FETCH_COLUMN);
         echo json_encode(['Users' => $count]);
     } catch (PDOException $e) {

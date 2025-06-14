@@ -25,7 +25,7 @@ export default function Register({ onBackToLogin }) {
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .required("*Email is required")
-      .email('*Email must contain "@"'),
+      .email('*Email must contain "@gmail"'),
     password: Yup.string().required("*Password is required"),
     confirmPassword: Yup.string()
       .required("*Confirm Password is required")
@@ -42,7 +42,7 @@ export default function Register({ onBackToLogin }) {
     monthly_salary: Yup.number()
       .typeError("*Monthly salary must be a number")
       .required("*Monthly salary is required")
-      .min(1, "*Must be greater than 1"),
+      .min(4000, "*Must be atleast 4000")
   });
 
   const onSubmit = async (values, { resetForm }) => {

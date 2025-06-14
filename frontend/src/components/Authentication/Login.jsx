@@ -43,14 +43,14 @@ export default function Login({ onSignupClick, closeModal }) {
           closeModal();
         }
       } else {
-        alert("Login failed: " + (response.data.error || "Unknown error"));
+        toast.error((response.data.error || "Unknown error"));
       }
     } catch (error) {
       console.error("Login error:", error);
       if (error.response) {
-        alert("Login failed: " + (error.response.data.error || "Server error"));
+        toast.error((error.response.data.error || "Server error"));
       } else {
-        alert("Login failed: Network or server is unreachable");
+        toast.error("Login failed: Network or server is unreachable");
       }
     }
   };

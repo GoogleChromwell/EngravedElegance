@@ -255,7 +255,7 @@ export default function Overview() {
                 custom-tablet:text-[16px]
               custom-mobileSmall:text-[14px]"
               >
-                Users
+                Staff
               </h1>
               <span
                 className="custom-mobileLarge:block
@@ -278,7 +278,7 @@ export default function Overview() {
                 className="custom-tablet:text-[12px]
               custom-mobileSmall:text-[10px]"
               >
-                *Registered users
+                *Registered staff
               </p>
             </div>
           </div>
