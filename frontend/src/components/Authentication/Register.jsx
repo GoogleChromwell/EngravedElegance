@@ -76,7 +76,7 @@ export default function Register({ onBackToLogin }) {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full ">
       <ToastContainer />
       <div className="w-full h-auto justify-center items-center p-5 rounded-[5px]">
         <h1 className="text-center font-bold text-[18px] pb-5">
@@ -89,7 +89,7 @@ export default function Register({ onBackToLogin }) {
           onSubmit={onSubmit}
         >
           <Form className="grid grid-cols-2 gap-5">
-            <div className="col-span-2 flex flex-col gap-1">
+            <div className="col-span-2 flex flex-col">
               <h1 className="text-[14px] font-medium">Email</h1>
               <Field
                 name="email"
@@ -103,7 +103,7 @@ export default function Register({ onBackToLogin }) {
             </div>
 
             <div>
-              <div className="relative flex flex-col gap-1">
+              <div className="relative flex flex-col">
                 <h1 className="text-[14px] font-medium">Password</h1>
                 <Field
                   type={showPassword ? "text" : "password"}
@@ -130,7 +130,7 @@ export default function Register({ onBackToLogin }) {
             </div>
 
             <div>
-              <div className="relative flex flex-col gap-1">
+              <div className="relative flex flex-col">
                 <h1 className="text-[14px] font-medium">Confirm Password</h1>
                 <Field
                   type={showConfirmPassword ? "text" : "password"}
@@ -156,7 +156,7 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
               <h1 className="text-[14px] font-medium">First name</h1>
               <Field
                 name="first_name"
@@ -169,7 +169,7 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
               <h1 className="text-[14px] font-medium">Last name</h1>
               <Field
                 name="last_name"
@@ -182,7 +182,7 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
               <h1 className="text-[14px] font-medium">Middle Initial</h1>
               <Field
                 name="middle_initial"
@@ -195,7 +195,7 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
               <h1 className="text-[14px] font-medium">Address</h1>
               <Field
                 name="address"
@@ -208,7 +208,7 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
               <h1 className="text-[14px] font-medium">Contact Number</h1>
               <Field
                 name="contact_number"
@@ -221,7 +221,7 @@ export default function Register({ onBackToLogin }) {
               />
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col">
               <h1 className="text-[14px] font-medium">Monthly Salary</h1>
               <Field
                 name="monthly_salary"

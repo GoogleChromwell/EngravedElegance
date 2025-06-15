@@ -57,7 +57,7 @@ export default function EditFunction({ staffToEdit }) {
     monthly_salary: Yup.number()
       .typeError("*Monthly salary must be a number")
       .required("*Monthly salary is required")
-      .min(4000, "*Must be greater than 4000"),
+      .min(4000, "*Must be atleast 4000"),
   });
 
   const onSubmit = async (values, { resetForm }) => {
