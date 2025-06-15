@@ -75,20 +75,17 @@ export default function Overview() {
           />
         </div>
         <div
-          className="flex justify-between items-center
+          className="flex justify-start items-center
         custom-tablet:text-[16px]
         custom-mobileSmall:text-[14px]"
         >
-          {Number(earnings).toLocaleString("en-PH", {
-            style: "currency",
-            currency: "PHP",
-          })}
+
           <div className="flex gap-5">
             <div className="flex items-center gap-1">
               <div className="bg-green-600 size-[14px] rounded-custom-xs"></div>
               <p
                 className="text-[10px]
-              custom-mobileSmall:hidden
+              custom-mobileSmall:block
               custom-tablet:block"
               >
                 Total Earnings
@@ -98,7 +95,7 @@ export default function Overview() {
               <div className="bg-blue-600 size-[14px] rounded-custom-xs"></div>
               <p
                 className="text-[10px]
-              custom-mobileSmall:hidden
+              custom-mobileSmall:block
               custom-tablet:block"
               >
                 Total Sales
@@ -108,7 +105,7 @@ export default function Overview() {
               <div className="bg-orange-600 size-[14px] rounded-custom-xs"></div>
               <p
                 className="text-[10px]
-              custom-mobileSmall:hidden
+              custom-mobileSmall:block
               custom-tablet:block"
               >
                 Total Orders
@@ -140,7 +137,7 @@ export default function Overview() {
               </h1>
               <span
                 className="custom-mobileLarge:block
-                        custom-mobileSmall:hidden"
+                        custom-mobileSmall:block"
               >
                 <AttachMoneyOutlinedIcon
                   style={{ fontSize: "36px" }}
@@ -182,7 +179,7 @@ export default function Overview() {
               </h1>
               <span
                 className="custom-mobileLarge:block
-                        custom-mobileSmall:hidden"
+                        custom-mobileSmall:block"
               >
                 <TrendingUpOutlinedIcon
                   style={{ fontSize: "36px" }}
@@ -222,7 +219,7 @@ export default function Overview() {
               <span
                 className="
                 custom-mobileLarge:block
-                        custom-mobileSmall:hidden"
+                        custom-mobileSmall:block"
               >
                 <ReceiptLongOutlinedIcon
                   style={{ fontSize: "36px" }}
@@ -233,13 +230,13 @@ export default function Overview() {
             <div className="flex flex-col gap-4">
               <h1
                 className="custom-tablet:text-[16px]
-              custom-mobileSmall:text-[14px]"
+                custom-mobileSmall:text-[14px]"
               >
                 {orders}
               </h1>
               <p
                 className="custom-tablet:text-[12px]
-              custom-mobileSmall:text-[10px]"
+                custom-mobileSmall:text-[10px]"
               >
                 *Total orders placed
               </p>
@@ -259,7 +256,7 @@ export default function Overview() {
               </h1>
               <span
                 className="custom-mobileLarge:block
-                        custom-mobileSmall:hidden"
+                        custom-mobileSmall:block"
               >
                 <PersonOutlineOutlinedIcon
                   style={{ fontSize: "36px" }}
