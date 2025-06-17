@@ -64,9 +64,9 @@ export default function EditProduct({ ProductToEdit }) {
   }
 
   return (
-    <div className="w-full h-full">
+    <div className="custom-tablet:w-[400px] custom-mobileSmall:w-[300px] h-full">
       <ToastContainer />
-      <div className="w-fit justify-center items-center p-5 rounded-[5px]">
+      <div className="w-full justify-center items-center p-5 rounded-[5px]">
         <h1 className="text-center font-bold text-[18px] pb-5">Edit Product</h1>
 
         <Formik

@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
             echo json_encode(["error" => "Missing product ID"]);
             exit();
         }
-        $query = "DELETE FROM products WHERE product_id = :id";
+
+        $query = "UPDATE products SET isDeleted = 1 WHERE product_id = :id";
         $stmt = $pdo->prepare($query);
         $stmt->execute(["id" => $data["id"]]);
 

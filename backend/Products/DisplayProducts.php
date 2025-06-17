@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     try {
         require_once "../connection.inc.php";
 
-        $query = "SELECT `product_id`, `product_name`, `product_description`, `price`, `quantity`, `image` FROM products";
+        $query = "SELECT `product_id`, `product_name`, `product_description`, `price`, `quantity`, `image` FROM products WHERE isDeleted=0";
         $stmt = $pdo->prepare($query);
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
