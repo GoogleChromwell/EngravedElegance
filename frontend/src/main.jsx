@@ -12,6 +12,7 @@ import Staff from "./pages/Staff.jsx";
 import { UserProvider } from "./components/Authentication/UserContext.jsx";
 import ProtectedRoute from "./components/Authentication/ProtectedRoute.jsx";
 import EditFunction from "./components/Tables/EditFunction.jsx";
+import Inventory from "./pages/Inventory.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute allowedRoles={["admin"]}>
         <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+    {
+    path: "/Inventory",
+    element: (
+      <ProtectedRoute allowedRoles={["admin"]}>
+        <Inventory/>
       </ProtectedRoute>
     ),
   },

@@ -7,6 +7,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 
 export default function Sidebar() {
   const { user } = useContext(UserContext);
@@ -72,6 +73,21 @@ export default function Sidebar() {
                 Dashboard
               </span>
             </NavLink>
+
+            <NavLink
+              to="/Inventory"
+              className={({ isActive }) => navLinkStyle(isActive)}
+            >
+              <Inventory2OutlinedIcon style={{ fontSize: "24px" }} />
+              <span
+                className="pt-0.5
+                        custom-mobileSmall:hidden
+                        custom-tablet:block"
+              >
+                Inventory
+              </span>
+            </NavLink>
+
             <NavLink
               to="/Staff"
               className={({ isActive }) => navLinkStyle(isActive)}
@@ -85,6 +101,8 @@ export default function Sidebar() {
                 Staff
               </span>
             </NavLink>
+
+            
           </>
         )}
 
